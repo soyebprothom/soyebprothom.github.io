@@ -1,0 +1,615 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Soyeb Prothom | Official Portfolio & Showcase</title>
+    <meta name="description" content="Official Portfolio of Soyeb Prothom - Undergraduate Textile Engineering Student, Event Organizer, and Campus Leader.">
+    
+    <!-- Fonts & Icons -->
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&family=Outfit:wght@400;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+    <style>
+        :root {
+            --bg-dark: #090d16;
+            --bg-card: rgba(21, 30, 49, 0.7);
+            --bg-card-hover: rgba(30, 43, 69, 0.85);
+            --accent-blue: #38bdf8;
+            --accent-purple: #818cf8;
+            --accent-emerald: #34d399;
+            --text-main: #f8fafc;
+            --text-muted: #94a3b8;
+            --border-color: rgba(255, 255, 255, 0.08);
+            --glass-glow: rgba(56, 189, 248, 0.15);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Plus Jakarta Sans', sans-serif;
+            scroll-behavior: smooth;
+        }
+
+        body {
+            background-color: var(--bg-dark);
+            color: var(--text-main);
+            line-height: 1.6;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            background-image: 
+                radial-gradient(circle at 15% 15%, rgba(56, 189, 248, 0.08) 0%, transparent 40%),
+                radial-gradient(circle at 85% 85%, rgba(129, 140, 248, 0.08) 0%, transparent 40%);
+        }
+
+        /* Top Navigation Header */
+        nav {
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            background: rgba(9, 13, 22, 0.85);
+            backdrop-filter: blur(12px);
+            border-bottom: 1px solid var(--border-color);
+            padding: 15px 0;
+        }
+
+        .nav-container {
+            max-width: 1100px;
+            margin: 0 auto;
+            padding: 0 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            font-family: 'Outfit', sans-serif;
+            font-size: 1.4rem;
+            font-weight: 700;
+            color: #fff;
+            text-decoration: none;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .logo span {
+            color: var(--accent-blue);
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 8px;
+            list-style: none;
+        }
+
+        .nav-btn {
+            background: transparent;
+            border: 1px solid transparent;
+            color: var(--text-muted);
+            padding: 8px 16px;
+            border-radius: 20px;
+            cursor: pointer;
+            font-size: 0.9rem;
+            font-weight: 500;
+            transition: all 0.3s ease;
+            display: flex;
+            align-items: center;
+            gap: 6px;
+        }
+
+        .nav-btn:hover, .nav-btn.active {
+            color: #fff;
+            background: rgba(56, 189, 248, 0.1);
+            border-color: rgba(56, 189, 248, 0.3);
+            box-shadow: 0 0 15px var(--glass-glow);
+        }
+
+        /* Container Main Body */
+        .main-container {
+            max-width: 1100px;
+            margin: 40px auto;
+            padding: 0 20px;
+            flex: 1;
+            width: 100%;
+        }
+
+        /* Page Content Views */
+        .page-view {
+            display: none;
+            animation: fadeIn 0.4s ease-in-out forwards;
+        }
+
+        .page-view.active-page {
+            display: block;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(12px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        /* Hero / Overview Section */
+        .hero-card {
+            background: var(--bg-card);
+            border: 1px solid var(--border-color);
+            border-radius: 24px;
+            padding: 40px;
+            display: flex;
+            align-items: center;
+            gap: 40px;
+            backdrop-filter: blur(10px);
+            box-shadow: 0 20px 40px rgba(0,0,0,0.3);
+            margin-bottom: 30px;
+        }
+
+        .hero-avatar {
+            width: 200px;
+            height: 200px;
+            border-radius: 50%;
+            object-fit: cover;
+            border: 3px solid var(--accent-blue);
+            box-shadow: 0 0 25px rgba(56, 189, 248, 0.3);
+            flex-shrink: 0;
+        }
+
+        .hero-details h1 {
+            font-family: 'Outfit', sans-serif;
+            font-size: 2.5rem;
+            font-weight: 700;
+            color: #fff;
+            margin-bottom: 8px;
+        }
+
+        .hero-tagline {
+            color: var(--accent-blue);
+            font-size: 1.1rem;
+            font-weight: 600;
+            margin-bottom: 15px;
+        }
+
+        .hero-bio {
+            color: var(--text-muted);
+            font-size: 0.98rem;
+            margin-bottom: 20px;
+        }
+
+        .hero-pills {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+        }
+
+        .pill {
+            background: rgba(255, 255, 255, 0.05);
+            border: 1px solid var(--border-color);
+            padding: 6px 14px;
+            border-radius: 30px;
+            font-size: 0.85rem;
+            color: var(--text-main);
+            display: flex;
+            align-items: center;
+            gap: 6px;
+        }
+
+        /* Grid Cards */
+        .section-header {
+            font-family: 'Outfit', sans-serif;
+            font-size: 1.6rem;
+            color: #fff;
+            margin-bottom: 25px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            border-bottom: 1px solid var(--border-color);
+            padding-bottom: 12px;
+        }
+
+        .section-header i {
+            color: var(--accent-blue);
+        }
+
+        .grid-2 {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            gap: 25px;
+        }
+
+        .grid-3 {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 25px;
+        }
+
+        .content-card {
+            background: var(--bg-card);
+            border: 1px solid var(--border-color);
+            border-radius: 20px;
+            padding: 25px;
+            backdrop-filter: blur(10px);
+            transition: all 0.3s ease;
+        }
+
+        .content-card:hover {
+            background: var(--bg-card-hover);
+            border-color: rgba(56, 189, 248, 0.4);
+            transform: translateY(-5px);
+        }
+
+        /* Role & Org Styling */
+        .role-badge {
+            display: inline-block;
+            background: rgba(129, 140, 248, 0.15);
+            color: var(--accent-purple);
+            font-size: 0.8rem;
+            padding: 4px 12px;
+            border-radius: 12px;
+            font-weight: 600;
+            margin-bottom: 10px;
+        }
+
+        /* Image & Media Showcase */
+        .media-card {
+            background: var(--bg-card);
+            border: 1px solid var(--border-color);
+            border-radius: 20px;
+            overflow: hidden;
+            transition: all 0.3s ease;
+        }
+
+        .media-card:hover {
+            transform: translateY(-5px);
+            border-color: var(--accent-blue);
+        }
+
+        .media-img-wrapper {
+            position: relative;
+            width: 100%;
+            height: 200px;
+            overflow: hidden;
+            background: #151d31;
+        }
+
+        .media-img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.5s ease;
+        }
+
+        .media-card:hover .media-img {
+            transform: scale(1.05);
+        }
+
+        .media-body {
+            padding: 20px;
+        }
+
+        .media-title {
+            font-size: 1.1rem;
+            font-weight: 700;
+            color: #fff;
+            margin-bottom: 6px;
+        }
+
+        .media-desc {
+            font-size: 0.88rem;
+            color: var(--text-muted);
+        }
+
+        /* Skills Progress */
+        .skill-item {
+            margin-bottom: 16px;
+        }
+
+        .skill-info {
+            display: flex;
+            justify-content: space-between;
+            font-size: 0.9rem;
+            margin-bottom: 6px;
+        }
+
+        .skill-bar-bg {
+            background: rgba(255, 255, 255, 0.08);
+            height: 8px;
+            border-radius: 10px;
+            overflow: hidden;
+        }
+
+        .skill-bar-fill {
+            height: 100%;
+            background: linear-gradient(90deg, var(--accent-blue), var(--accent-purple));
+            border-radius: 10px;
+        }
+
+        /* Social Icons & Footer */
+        .social-row {
+            display: flex;
+            gap: 15px;
+            margin-top: 20px;
+        }
+
+        .social-icon {
+            width: 45px;
+            height: 45px;
+            border-radius: 50%;
+            background: rgba(255, 255, 255, 0.05);
+            border: 1px solid var(--border-color);
+            color: #fff;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-decoration: none;
+            transition: all 0.3s ease;
+        }
+
+        .social-icon:hover {
+            background: var(--accent-blue);
+            color: #000;
+            transform: translateY(-3px);
+            box-shadow: 0 0 15px var(--glass-glow);
+        }
+
+        footer {
+            text-align: center;
+            padding: 30px 0;
+            border-top: 1px solid var(--border-color);
+            color: var(--text-muted);
+            font-size: 0.85rem;
+            margin-top: 40px;
+        }
+
+        /* Responsive Layout */
+        @media (max-width: 768px) {
+            .hero-card {
+                flex-direction: column;
+                text-align: center;
+                padding: 30px 20px;
+            }
+
+            .hero-pills {
+                justify-content: center;
+            }
+
+            .nav-container {
+                flex-direction: column;
+                gap: 15px;
+            }
+
+            .nav-links {
+                width: 100%;
+                overflow-x: auto;
+                padding-bottom: 5px;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Header Navigation Bar -->
+    <nav>
+        <div class="nav-container">
+            <a href="#" class="logo">Soyeb<span>Prothom</span></a>
+            <ul class="nav-links">
+                <li><button class="nav-btn active" onclick="switchTab('home')"><i class="fas fa-house"></i> Home</button></li>
+                <li><button class="nav-btn" onclick="switchTab('about')"><i class="fas fa-user-tie"></i> Leadership</button></li>
+                <li><button class="nav-btn" onclick="switchTab('sessions')"><i class="fas fa-images"></i> Sessions & Gallery</button></li>
+                <li><button class="nav-btn" onclick="switchTab('certificates')"><i class="fas fa-award"></i> Certificates</button></li>
+                <li><button class="nav-btn" onclick="switchTab('contact')"><i class="fas fa-envelope"></i> Contact</button></li>
+            </ul>
+        </div>
+    </nav>
+
+    <!-- Main Content Container -->
+    <div class="main-container">
+
+        <!-- ================= TAB 1: HOME / OVERVIEW ================= -->
+        <div id="tab-home" class="page-view active-page">
+            <div class="hero-card">
+                <img src="profile.jpg" alt="Soyeb Prothom" class="hero-avatar" onerror="this.src='https://via.placeholder.com/200?text=Soyeb+Prothom'">
+                <div class="hero-details">
+                    <h1>Soyeb Prothom</h1>
+                    <div class="hero-tagline">Undergraduate Textile Engineering Student | Campus Leader & Event Organizer</div>
+                    <p class="hero-bio">
+                        B.Sc student in Fabric Engineering at Pabna Textile Engineering College (19th Batch). Enthusiastic about organizing campus competitions, leadership development, IT operations, and digital content creation.
+                    </p>
+                    <div class="hero-pills">
+                        <span class="pill"><i class="fas fa-location-dot" style="color:var(--accent-blue)"></i> Pabna, Bangladesh</span>
+                        <span class="pill"><i class="fas fa-graduation-cap" style="color:var(--accent-purple)"></i> PTEC 19th Batch</span>
+                        <span class="pill"><i class="fas fa-building-columns" style="color:var(--accent-emerald)"></i> Fabric Engineering</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="section-header"><i class="fas fa-star"></i> Core Highlights</div>
+            <div class="grid-3">
+                <div class="content-card">
+                    <i class="fas fa-bullhorn fa-2x" style="color: var(--accent-blue); margin-bottom: 15px;"></i>
+                    <h3 style="color:#fff; margin-bottom:8px;">Director of Operations</h3>
+                    <p style="color: var(--text-muted); font-size: 0.9rem;">Leading operational workflows and event executions at PTEC English Language Club.</p>
+                </div>
+                <div class="content-card">
+                    <i class="fas fa-palette fa-2x" style="color: var(--accent-purple); margin-bottom: 15px;"></i>
+                    <h3 style="color:#fff; margin-bottom:8px;">Assistant Secretary (IT & Design)</h3>
+                    <p style="color: var(--text-muted); font-size: 0.9rem;">Managing IT design and graphics branding for PTEC Career Club activities.</p>
+                </div>
+                <div class="content-card">
+                    <i class="fas fa-award fa-2x" style="color: var(--accent-emerald); margin-bottom: 15px;"></i>
+                    <h3 style="color:#fff; margin-bottom:8px;">Campus Ambassador</h3>
+                    <p style="color: var(--text-muted); font-size: 0.9rem;">Served as Official Campus Ambassador for Textile Olympiad 5.0 organized by JTEC.</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- ================= TAB 2: ABOUT & LEADERSHIP ================= -->
+        <div id="tab-about" class="page-view">
+            <div class="section-header"><i class="fas fa-users-gear"></i> Leadership & Organizational Roles</div>
+            <div class="grid-2">
+                <div class="content-card">
+                    <span class="role-badge">Executive Role</span>
+                    <h3 style="color:#fff;">PTEC English Language Club</h3>
+                    <p style="color:var(--accent-blue); font-weight:600; margin-bottom:10px;">Director of Operations</p>
+                    <p style="color:var(--text-muted); font-size:0.9rem;">Overseeing strategy, event logistics, and member engagement for all campus language workshops and competitions.</p>
+                </div>
+                <div class="content-card">
+                    <span class="role-badge">IT & Design</span>
+                    <h3 style="color:#fff;">PTEC Career Club</h3>
+                    <p style="color:var(--accent-purple); font-weight:600; margin-bottom:10px;">Assistant Secretary (IT & Design)</p>
+                    <p style="color:var(--text-muted); font-size:0.9rem;">Designing branding materials, Canva graphics, and managing digital registration workflows.</p>
+                </div>
+                <div class="content-card">
+                    <span class="role-badge">National Network</span>
+                    <h3 style="color:#fff;">Textile Engineers Society (TES)</h3>
+                    <p style="color:var(--accent-emerald); font-weight:600; margin-bottom:10px;">General Member</p>
+                    <p style="color:var(--text-muted); font-size:0.9rem;">Connecting with textile engineering students and industry professionals across Bangladesh.</p>
+                </div>
+                <div class="content-card">
+                    <span class="role-badge">Campus Engagement</span>
+                    <h3 style="color:#fff;">Pabna District Student Association</h3>
+                    <p style="color:var(--accent-blue); font-weight:600; margin-bottom:10px;">General Member</p>
+                    <p style="color:var(--text-muted); font-size:0.9rem;">Participating in student community initiatives and district student networking events.</p>
+                </div>
+            </div>
+
+            <div class="section-header" style="margin-top: 40px;"><i class="fas fa-graduation-cap"></i> Academic Qualifications</div>
+            <div class="grid-3">
+                <div class="content-card">
+                    <h4 style="color: var(--accent-blue);">B.Sc in Textile Engineering</h4>
+                    <p style="color: #fff; font-weight: 600;">Pabna Textile Engineering College</p>
+                    <p style="color: var(--text-muted); font-size: 0.85rem;">Fabric Engineering | 19th Batch</p>
+                </div>
+                <div class="content-card">
+                    <h4 style="color: var(--accent-purple);">HSC (Science)</h4>
+                    <p style="color: #fff; font-weight: 600;">Govt. Shaheed Bulbul College, Pabna</p>
+                    <p style="color: var(--text-muted); font-size: 0.85rem;">Passing Year: 2024</p>
+                </div>
+                <div class="content-card">
+                    <h4 style="color: var(--accent-emerald);">SSC (Science)</h4>
+                    <p style="color: #fff; font-weight: 600;">Pabna Zilla School</p>
+                    <p style="color: var(--text-muted); font-size: 0.85rem;">Passing Year: 2022</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- ================= TAB 3: SESSIONS & GALLERY ================= -->
+        <div id="tab-sessions" class="page-view">
+            <div class="section-header"><i class="fas fa-camera-retro"></i> Sessions, Workshops & Events Showcase</div>
+            <p style="color: var(--text-muted); margin-bottom: 25px;">Highlights from sessions I organized, conducted, and attended on campus.</p>
+
+            <div class="grid-3">
+                <div class="media-card">
+                    <div class="media-img-wrapper">
+                        <img src="event1.jpg" alt="Session Image 1" class="media-img" onerror="this.src='https://via.placeholder.com/400x250?text=Session+Photo+1'">
+                    </div>
+                    <div class="media-body">
+                        <div class="media-title">Professional CV Writing Workshop</div>
+                        <div class="media-desc">Organized by PTEC Career Club to help students build professional job resumes.</div>
+                    </div>
+                </div>
+
+                <div class="media-card">
+                    <div class="media-img-wrapper">
+                        <img src="event2.jpg" alt="Session Image 2" class="media-img" onerror="this.src='https://via.placeholder.com/400x250?text=Session+Photo+2'">
+                    </div>
+                    <div class="media-body">
+                        <div class="media-title">Intra Campus Competition</div>
+                        <div class="media-desc">Managed student registrations, automated email workflows, and event execution.</div>
+                    </div>
+                </div>
+
+                <div class="media-card">
+                    <div class="media-img-wrapper">
+                        <img src="event3.jpg" alt="Session Image 3" class="media-img" onerror="this.src='https://via.placeholder.com/400x250?text=Session+Photo+3'">
+                    </div>
+                    <div class="media-body">
+                        <div class="media-title">Textile Youth Carnival 2.6</div>
+                        <div class="media-desc">Attended national textile youth convention at Bangladesh Film Archive, Dhaka.</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- ================= TAB 4: CERTIFICATES & GIFTS ================= -->
+        <div id="tab-certificates" class="page-view">
+            <div class="section-header"><i class="fas fa-medal"></i> Gift Certificates & Achievements</div>
+            <p style="color: var(--text-muted); margin-bottom: 25px;">Recognitions, participation gifts, and awards received.</p>
+
+            <div class="grid-2">
+                <div class="media-card">
+                    <div class="media-img-wrapper" style="height:250px;">
+                        <img src="cert1.jpg" alt="Certificate 1" class="media-img" onerror="this.src='https://via.placeholder.com/500x300?text=Certificate+or+Gift+Image+1'">
+                    </div>
+                    <div class="media-body">
+                        <div class="media-title">English Excellence Challenge Certificate</div>
+                        <div class="media-desc">Recognized for participation and excellence in English language performance hosted by PTEC ELC.</div>
+                    </div>
+                </div>
+
+                <div class="media-card">
+                    <div class="media-img-wrapper" style="height:250px;">
+                        <img src="cert2.jpg" alt="Certificate 2" class="media-img" onerror="this.src='https://via.placeholder.com/500x300?text=Certificate+or+Gift+Image+2'">
+                    </div>
+                    <div class="media-body">
+                        <div class="media-title">Textile Olympiad 5.0 Ambassador Honor</div>
+                        <div class="media-desc">Awarded recognition for successful event promotion and campus ambassador duties.</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- ================= TAB 5: CONTACT & NETWORK ================= -->
+        <div id="tab-contact" class="page-view">
+            <div class="section-header"><i class="fas fa-address-book"></i> Connect & Network</div>
+            
+            <div class="grid-2">
+                <div class="content-card">
+                    <h3 style="color:#fff; margin-bottom: 15px;">Contact Information</h3>
+                    <p style="color: var(--text-muted); margin-bottom: 12px;"><i class="fas fa-envelope" style="color:var(--accent-blue); margin-right:8px;"></i> <strong>Email:</strong> prothomsoyeb@gmail.com</p>
+                    <p style="color: var(--text-muted); margin-bottom: 12px;"><i class="fas fa-location-dot" style="color:var(--accent-purple); margin-right:8px;"></i> <strong>Address:</strong> Eskendar Ali Bishwash Road By Lane, Narayonpur, Pabna, Bangladesh</p>
+                    <p style="color: var(--text-muted); margin-bottom: 20px;"><i class="fas fa-university" style="color:var(--accent-emerald); margin-right:8px;"></i> <strong>Institution:</strong> Pabna Textile Engineering College</p>
+                    
+                    <a href="mailto:prothomsoyeb@gmail.com" class="nav-btn active" style="display:inline-flex; text-decoration:none; padding: 10px 24px;"><i class="fas fa-paper-plane"></i> Send Direct Email</a>
+                </div>
+
+                <div class="content-card">
+                    <h3 style="color:#fff; margin-bottom: 15px;">Social Media Handles</h3>
+                    <p style="color: var(--text-muted);">Feel free to connect with me for professional collaborations or campus projects.</p>
+                    
+                    <div class="social-row">
+                        <a href="https://www.linkedin.com/in/soyeb-prothom-6590b43b8" target="_blank" class="social-icon" title="LinkedIn"><i class="fab fa-linkedin-in"></i></a>
+                        <a href="https://www.facebook.com/soyeb.prothomsp" target="_blank" class="social-icon" title="Facebook"><i class="fab fa-facebook-f"></i></a>
+                        <a href="https://www.instagram.com/soyeb_prothom" target="_blank" class="social-icon" title="Instagram"><i class="fab fa-instagram"></i></a>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+    <!-- Footer -->
+    <footer>
+        <div class="nav-container" style="justify-content: center;">
+            <p>&copy; 2026 Soyeb Prothom. All Rights Reserved | Built for Pabna Textile Engineering College</p>
+        </div>
+    </footer>
+
+    <!-- Tab Switch Script -->
+    <script>
+        function switchTab(tabName) {
+            // Hide all tab pages
+            const pages = document.querySelectorAll('.page-view');
+            pages.forEach(page => page.classList.remove('active-page'));
+
+            // Deactivate all buttons
+            const buttons = document.querySelectorAll('.nav-btn');
+            buttons.forEach(btn => btn.classList.remove('active'));
+
+            // Activate selected tab and button
+            document.getElementById('tab-' + tabName).classList.add('active-page');
+            event.currentTarget.classList.add('active');
+        }
+    </script>
+</body>
+</html>
