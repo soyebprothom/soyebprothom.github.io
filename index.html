@@ -3,612 +3,220 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Soyeb Prothom | Official Portfolio & Showcase</title>
-    <meta name="description" content="Official Portfolio of Soyeb Prothom - Undergraduate Textile Engineering Student, Event Organizer, and Campus Leader.">
-    
-    <!-- Fonts & Icons -->
-    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&family=Outfit:wght@400;600;700&display=swap" rel="stylesheet">
+    <title>Soyeb Prothom | Official Portfolio</title>
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- FontAwesome Icons -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     <style>
-        :root {
-            --bg-dark: #090d16;
-            --bg-card: rgba(21, 30, 49, 0.7);
-            --bg-card-hover: rgba(30, 43, 69, 0.85);
-            --accent-blue: #38bdf8;
-            --accent-purple: #818cf8;
-            --accent-emerald: #34d399;
-            --text-main: #f8fafc;
-            --text-muted: #94a3b8;
-            --border-color: rgba(255, 255, 255, 0.08);
-            --glass-glow: rgba(56, 189, 248, 0.15);
-        }
-
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-            font-family: 'Plus Jakarta Sans', sans-serif;
-            scroll-behavior: smooth;
-        }
-
-        body {
-            background-color: var(--bg-dark);
-            color: var(--text-main);
-            line-height: 1.6;
-            min-height: 100vh;
-            display: flex;
-            flex-direction: column;
-            background-image: 
-                radial-gradient(circle at 15% 15%, rgba(56, 189, 248, 0.08) 0%, transparent 40%),
-                radial-gradient(circle at 85% 85%, rgba(129, 140, 248, 0.08) 0%, transparent 40%);
-        }
-
-        /* Top Navigation Header */
-        nav {
-            position: sticky;
-            top: 0;
-            z-index: 1000;
-            background: rgba(9, 13, 22, 0.85);
+        body { font-family: 'Inter', sans-serif; }
+        .glass-card {
+            background: rgba(30, 41, 59, 0.7);
             backdrop-filter: blur(12px);
-            border-bottom: 1px solid var(--border-color);
-            padding: 15px 0;
+            border: 1px solid rgba(255, 255, 255, 0.1);
         }
-
-        .nav-container {
-            max-width: 1100px;
-            margin: 0 auto;
-            padding: 0 20px;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-        }
-
-        .logo {
-            font-family: 'Outfit', sans-serif;
-            font-size: 1.4rem;
-            font-weight: 700;
-            color: #fff;
-            text-decoration: none;
-            display: flex;
-            align-items: center;
-            gap: 10px;
-        }
-
-        .logo span {
-            color: var(--accent-blue);
-        }
-
-        .nav-links {
-            display: flex;
-            gap: 8px;
-            list-style: none;
-        }
-
-        .nav-btn {
-            background: transparent;
-            border: 1px solid transparent;
-            color: var(--text-muted);
-            padding: 8px 16px;
-            border-radius: 20px;
-            cursor: pointer;
-            font-size: 0.9rem;
-            font-weight: 500;
-            transition: all 0.3s ease;
-            display: flex;
-            align-items: center;
-            gap: 6px;
-        }
-
-        .nav-btn:hover, .nav-btn.active {
-            color: #fff;
-            background: rgba(56, 189, 248, 0.1);
-            border-color: rgba(56, 189, 248, 0.3);
-            box-shadow: 0 0 15px var(--glass-glow);
-        }
-
-        /* Container Main Body */
-        .main-container {
-            max-width: 1100px;
-            margin: 40px auto;
-            padding: 0 20px;
-            flex: 1;
-            width: 100%;
-        }
-
-        /* Page Content Views */
-        .page-view {
-            display: none;
-            animation: fadeIn 0.4s ease-in-out forwards;
-        }
-
-        .page-view.active-page {
-            display: block;
-        }
-
-        @keyframes fadeIn {
-            from { opacity: 0; transform: translateY(12px); }
-            to { opacity: 1; transform: translateY(0); }
-        }
-
-        /* Hero / Overview Section */
-        .hero-card {
-            background: var(--bg-card);
-            border: 1px solid var(--border-color);
-            border-radius: 24px;
-            padding: 40px;
-            display: flex;
-            align-items: center;
-            gap: 40px;
-            backdrop-filter: blur(10px);
-            box-shadow: 0 20px 40px rgba(0,0,0,0.3);
-            margin-bottom: 30px;
-        }
-
-        .hero-avatar {
-            width: 200px;
-            height: 200px;
-            border-radius: 50%;
-            object-fit: cover;
-            border: 3px solid var(--accent-blue);
-            box-shadow: 0 0 25px rgba(56, 189, 248, 0.3);
-            flex-shrink: 0;
-        }
-
-        .hero-details h1 {
-            font-family: 'Outfit', sans-serif;
-            font-size: 2.5rem;
-            font-weight: 700;
-            color: #fff;
-            margin-bottom: 8px;
-        }
-
-        .hero-tagline {
-            color: var(--accent-blue);
-            font-size: 1.1rem;
-            font-weight: 600;
-            margin-bottom: 15px;
-        }
-
-        .hero-bio {
-            color: var(--text-muted);
-            font-size: 0.98rem;
-            margin-bottom: 20px;
-        }
-
-        .hero-pills {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 10px;
-        }
-
-        .pill {
-            background: rgba(255, 255, 255, 0.05);
-            border: 1px solid var(--border-color);
-            padding: 6px 14px;
-            border-radius: 30px;
-            font-size: 0.85rem;
-            color: var(--text-main);
-            display: flex;
-            align-items: center;
-            gap: 6px;
-        }
-
-        /* Grid Cards */
-        .section-header {
-            font-family: 'Outfit', sans-serif;
-            font-size: 1.6rem;
-            color: #fff;
-            margin-bottom: 25px;
-            display: flex;
-            align-items: center;
-            gap: 10px;
-            border-bottom: 1px solid var(--border-color);
-            padding-bottom: 12px;
-        }
-
-        .section-header i {
-            color: var(--accent-blue);
-        }
-
-        .grid-2 {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
-            gap: 25px;
-        }
-
-        .grid-3 {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-            gap: 25px;
-        }
-
-        .content-card {
-            background: var(--bg-card);
-            border: 1px solid var(--border-color);
-            border-radius: 20px;
-            padding: 25px;
-            backdrop-filter: blur(10px);
-            transition: all 0.3s ease;
-        }
-
-        .content-card:hover {
-            background: var(--bg-card-hover);
-            border-color: rgba(56, 189, 248, 0.4);
-            transform: translateY(-5px);
-        }
-
-        /* Role & Org Styling */
-        .role-badge {
-            display: inline-block;
-            background: rgba(129, 140, 248, 0.15);
-            color: var(--accent-purple);
-            font-size: 0.8rem;
-            padding: 4px 12px;
-            border-radius: 12px;
-            font-weight: 600;
-            margin-bottom: 10px;
-        }
-
-        /* Image & Media Showcase */
-        .media-card {
-            background: var(--bg-card);
-            border: 1px solid var(--border-color);
-            border-radius: 20px;
-            overflow: hidden;
-            transition: all 0.3s ease;
-        }
-
-        .media-card:hover {
-            transform: translateY(-5px);
-            border-color: var(--accent-blue);
-        }
-
-        .media-img-wrapper {
-            position: relative;
-            width: 100%;
-            height: 200px;
-            overflow: hidden;
-            background: #151d31;
-        }
-
-        .media-img {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-            transition: transform 0.5s ease;
-        }
-
-        .media-card:hover .media-img {
-            transform: scale(1.05);
-        }
-
-        .media-body {
-            padding: 20px;
-        }
-
-        .media-title {
-            font-size: 1.1rem;
-            font-weight: 700;
-            color: #fff;
-            margin-bottom: 6px;
-        }
-
-        .media-desc {
-            font-size: 0.88rem;
-            color: var(--text-muted);
-        }
-
-        /* Skills Progress */
-        .skill-item {
-            margin-bottom: 16px;
-        }
-
-        .skill-info {
-            display: flex;
-            justify-content: space-between;
-            font-size: 0.9rem;
-            margin-bottom: 6px;
-        }
-
-        .skill-bar-bg {
-            background: rgba(255, 255, 255, 0.08);
-            height: 8px;
-            border-radius: 10px;
-            overflow: hidden;
-        }
-
-        .skill-bar-fill {
-            height: 100%;
-            background: linear-gradient(90deg, var(--accent-blue), var(--accent-purple));
-            border-radius: 10px;
-        }
-
-        /* Social Icons & Footer */
-        .social-row {
-            display: flex;
-            gap: 15px;
-            margin-top: 20px;
-        }
-
-        .social-icon {
-            width: 45px;
-            height: 45px;
-            border-radius: 50%;
-            background: rgba(255, 255, 255, 0.05);
-            border: 1px solid var(--border-color);
-            color: #fff;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            text-decoration: none;
-            transition: all 0.3s ease;
-        }
-
-        .social-icon:hover {
-            background: var(--accent-blue);
-            color: #000;
-            transform: translateY(-3px);
-            box-shadow: 0 0 15px var(--glass-glow);
-        }
-
-        footer {
-            text-align: center;
-            padding: 30px 0;
-            border-top: 1px solid var(--border-color);
-            color: var(--text-muted);
-            font-size: 0.85rem;
-            margin-top: 40px;
-        }
-
-        /* Responsive Layout */
-        @media (max-width: 768px) {
-            .hero-card {
-                flex-direction: column;
-                text-align: center;
-                padding: 30px 20px;
-            }
-
-            .hero-pills {
-                justify-content: center;
-            }
-
-            .nav-container {
-                flex-direction: column;
-                gap: 15px;
-            }
-
-            .nav-links {
-                width: 100%;
-                overflow-x: auto;
-                padding-bottom: 5px;
-            }
+        .nav-btn.active {
+            background-color: #2563eb;
+            color: #ffffff;
         }
     </style>
 </head>
-<body>
+<body class="bg-slate-950 text-slate-100 min-h-screen flex flex-col">
 
-    <!-- Header Navigation Bar -->
-    <nav>
-        <div class="nav-container">
-            <a href="#" class="logo">Soyeb<span>Prothom</span></a>
-            <ul class="nav-links">
-                <li><button class="nav-btn active" onclick="switchTab('home')"><i class="fas fa-house"></i> Home</button></li>
-                <li><button class="nav-btn" onclick="switchTab('about')"><i class="fas fa-user-tie"></i> Leadership</button></li>
-                <li><button class="nav-btn" onclick="switchTab('sessions')"><i class="fas fa-images"></i> Sessions & Gallery</button></li>
-                <li><button class="nav-btn" onclick="switchTab('certificates')"><i class="fas fa-award"></i> Certificates</button></li>
-                <li><button class="nav-btn" onclick="switchTab('contact')"><i class="fas fa-envelope"></i> Contact</button></li>
-            </ul>
+    <!-- Header / Navigation -->
+    <header class="sticky top-0 z-50 glass-card border-b border-slate-800">
+        <div class="max-w-6xl mx-auto px-4 py-4 flex flex-col sm:flex-row justify-between items-center gap-4">
+            <h1 class="text-2xl font-bold tracking-tight text-blue-400">Soyeb Prothom</h1>
+            <nav class="flex flex-wrap justify-center gap-2 text-sm font-medium">
+                <button onclick="switchTab('home')" id="tab-home" class="nav-btn active px-4 py-2 rounded-lg transition-all flex items-center gap-2">
+                    <i class="fa-solid fa-house"></i> Home
+                </button>
+                <button onclick="switchTab('leadership')" id="tab-leadership" class="nav-btn px-4 py-2 rounded-lg transition-all text-slate-300 hover:text-white hover:bg-slate-800 flex items-center gap-2">
+                    <i class="fa-solid fa-user-tie"></i> Leadership
+                </button>
+                <button onclick="switchTab('sessions')" id="tab-sessions" class="nav-btn px-4 py-2 rounded-lg transition-all text-slate-300 hover:text-white hover:bg-slate-800 flex items-center gap-2">
+                    <i class="fa-solid fa-images"></i> Sessions & Gallery
+                </button>
+                <button onclick="switchTab('certificates')" id="tab-certificates" class="nav-btn px-4 py-2 rounded-lg transition-all text-slate-300 hover:text-white hover:bg-slate-800 flex items-center gap-2">
+                    <i class="fa-solid fa-certificate"></i> Certificates
+                </button>
+                <button onclick="switchTab('contact')" id="tab-contact" class="nav-btn px-4 py-2 rounded-lg transition-all text-slate-300 hover:text-white hover:bg-slate-800 flex items-center gap-2">
+                    <i class="fa-solid fa-envelope"></i> Contact
+                </button>
+            </nav>
         </div>
-    </nav>
+    </header>
 
     <!-- Main Content Container -->
-    <div class="main-container">
+    <main class="max-w-6xl mx-auto px-4 py-8 flex-grow w-full">
 
-        <!-- ================= TAB 1: HOME / OVERVIEW ================= -->
-        <div id="tab-home" class="page-view active-page">
-            <div class="hero-card">
-                <img src="profile.jpg" alt="Soyeb Prothom" class="hero-avatar" onerror="this.src='https://via.placeholder.com/200?text=Soyeb+Prothom'">
-                <div class="hero-details">
-                    <h1>Soyeb Prothom</h1>
-                    <div class="hero-tagline">Undergraduate Textile Engineering Student | Campus Leader & Event Organizer</div>
-                    <p class="hero-bio">
-                        B.Sc student in Fabric Engineering at Pabna Textile Engineering College (19th Batch). Enthusiastic about organizing campus competitions, leadership development, IT operations, and digital content creation.
+        <!-- TAB 1: HOME -->
+        <section id="sec-home" class="space-y-8">
+            <!-- Hero Profile Card -->
+            <div class="glass-card rounded-2xl p-6 sm:p-8 flex flex-col md:flex-row items-center gap-8 shadow-xl">
+                <div class="relative w-44 h-44 sm:w-48 sm:h-48 rounded-full p-1 bg-gradient-to-tr from-blue-500 to-cyan-400 flex-shrink-0">
+                    <img src="profile.jpg" alt="Soyeb Prothom" class="w-full h-full object-cover rounded-full shadow-inner" onerror="this.onerror=null; this.src='https://via.placeholder.com/200?text=Profile+Image';">
+                </div>
+                <div class="space-y-4 text-center md:text-left">
+                    <h2 class="text-3xl sm:text-4xl font-extrabold text-white">Soyeb Prothom</h2>
+                    <p class="text-blue-400 font-semibold text-lg">Undergraduate Textile Engineering Student | Campus Leader & Event Organizer</p>
+                    <p class="text-slate-300 leading-relaxed text-sm sm:text-base">
+                        B.Sc. in Fabric Engineering at Pabna Textile Engineering College. Passionate about textile engineering, leadership, and event management. Actively involved in campus organizations to develop strong industry leadership, team management, and organizational skills for future professional excellence in the textile sector.
                     </p>
-                    <div class="hero-pills">
-                        <span class="pill"><i class="fas fa-location-dot" style="color:var(--accent-blue)"></i> Pabna, Bangladesh</span>
-                        <span class="pill"><i class="fas fa-graduation-cap" style="color:var(--accent-purple)"></i> PTEC 19th Batch</span>
-                        <span class="pill"><i class="fas fa-building-columns" style="color:var(--accent-emerald)"></i> Fabric Engineering</span>
+                    <div class="flex flex-wrap justify-center md:justify-start gap-3 text-xs sm:text-sm pt-2">
+                        <span class="bg-slate-800 text-slate-300 px-3 py-1.5 rounded-full flex items-center gap-2 border border-slate-700">
+                            <i class="fa-solid fa-location-dot text-blue-400"></i> Pabna, Bangladesh
+                        </span>
+                        <span class="bg-slate-800 text-slate-300 px-3 py-1.5 rounded-full flex items-center gap-2 border border-slate-700">
+                            <i class="fa-solid fa-graduation-cap text-blue-400"></i> PTEC 8th Batch
+                        </span>
+                        <span class="bg-slate-800 text-slate-300 px-3 py-1.5 rounded-full flex items-center gap-2 border border-slate-700">
+                            <i class="fa-solid fa-building-columns text-blue-400"></i> Fabric Engineering
+                        </span>
                     </div>
                 </div>
             </div>
 
-            <div class="section-header"><i class="fas fa-star"></i> Core Highlights</div>
-            <div class="grid-3">
-                <div class="content-card">
-                    <i class="fas fa-bullhorn fa-2x" style="color: var(--accent-blue); margin-bottom: 15px;"></i>
-                    <h3 style="color:#fff; margin-bottom:8px;">Director of Operations</h3>
-                    <p style="color: var(--text-muted); font-size: 0.9rem;">Leading operational workflows and event executions at PTEC English Language Club.</p>
-                </div>
-                <div class="content-card">
-                    <i class="fas fa-palette fa-2x" style="color: var(--accent-purple); margin-bottom: 15px;"></i>
-                    <h3 style="color:#fff; margin-bottom:8px;">Assistant Secretary (IT & Design)</h3>
-                    <p style="color: var(--text-muted); font-size: 0.9rem;">Managing IT design and graphics branding for PTEC Career Club activities.</p>
-                </div>
-                <div class="content-card">
-                    <i class="fas fa-award fa-2x" style="color: var(--accent-emerald); margin-bottom: 15px;"></i>
-                    <h3 style="color:#fff; margin-bottom:8px;">Campus Ambassador</h3>
-                    <p style="color: var(--text-muted); font-size: 0.9rem;">Served as Official Campus Ambassador for Textile Olympiad 5.0 organized by JTEC.</p>
-                </div>
-            </div>
-        </div>
-
-        <!-- ================= TAB 2: ABOUT & LEADERSHIP ================= -->
-        <div id="tab-about" class="page-view">
-            <div class="section-header"><i class="fas fa-users-gear"></i> Leadership & Organizational Roles</div>
-            <div class="grid-2">
-                <div class="content-card">
-                    <span class="role-badge">Executive Role</span>
-                    <h3 style="color:#fff;">PTEC English Language Club</h3>
-                    <p style="color:var(--accent-blue); font-weight:600; margin-bottom:10px;">Director of Operations</p>
-                    <p style="color:var(--text-muted); font-size:0.9rem;">Overseeing strategy, event logistics, and member engagement for all campus language workshops and competitions.</p>
-                </div>
-                <div class="content-card">
-                    <span class="role-badge">IT & Design</span>
-                    <h3 style="color:#fff;">PTEC Career Club</h3>
-                    <p style="color:var(--accent-purple); font-weight:600; margin-bottom:10px;">Assistant Secretary (IT & Design)</p>
-                    <p style="color:var(--text-muted); font-size:0.9rem;">Designing branding materials, Canva graphics, and managing digital registration workflows.</p>
-                </div>
-                <div class="content-card">
-                    <span class="role-badge">National Network</span>
-                    <h3 style="color:#fff;">Textile Engineers Society (TES)</h3>
-                    <p style="color:var(--accent-emerald); font-weight:600; margin-bottom:10px;">General Member</p>
-                    <p style="color:var(--text-muted); font-size:0.9rem;">Connecting with textile engineering students and industry professionals across Bangladesh.</p>
-                </div>
-                <div class="content-card">
-                    <span class="role-badge">Campus Engagement</span>
-                    <h3 style="color:#fff;">Pabna District Student Association</h3>
-                    <p style="color:var(--accent-blue); font-weight:600; margin-bottom:10px;">General Member</p>
-                    <p style="color:var(--text-muted); font-size:0.9rem;">Participating in student community initiatives and district student networking events.</p>
-                </div>
-            </div>
-
-            <div class="section-header" style="margin-top: 40px;"><i class="fas fa-graduation-cap"></i> Academic Qualifications</div>
-            <div class="grid-3">
-                <div class="content-card">
-                    <h4 style="color: var(--accent-blue);">B.Sc in Textile Engineering</h4>
-                    <p style="color: #fff; font-weight: 600;">Pabna Textile Engineering College</p>
-                    <p style="color: var(--text-muted); font-size: 0.85rem;">Fabric Engineering | 19th Batch</p>
-                </div>
-                <div class="content-card">
-                    <h4 style="color: var(--accent-purple);">HSC (Science)</h4>
-                    <p style="color: #fff; font-weight: 600;">Govt. Shaheed Bulbul College, Pabna</p>
-                    <p style="color: var(--text-muted); font-size: 0.85rem;">Passing Year: 2024</p>
-                </div>
-                <div class="content-card">
-                    <h4 style="color: var(--accent-emerald);">SSC (Science)</h4>
-                    <p style="color: #fff; font-weight: 600;">Pabna Zilla School</p>
-                    <p style="color: var(--text-muted); font-size: 0.85rem;">Passing Year: 2022</p>
-                </div>
-            </div>
-        </div>
-
-        <!-- ================= TAB 3: SESSIONS & GALLERY ================= -->
-        <div id="tab-sessions" class="page-view">
-            <div class="section-header"><i class="fas fa-camera-retro"></i> Sessions, Workshops & Events Showcase</div>
-            <p style="color: var(--text-muted); margin-bottom: 25px;">Highlights from sessions I organized, conducted, and attended on campus.</p>
-
-            <div class="grid-3">
-                <div class="media-card">
-                    <div class="media-img-wrapper">
-                        <img src="event1.jpg" alt="Session Image 1" class="media-img" onerror="this.src='https://via.placeholder.com/400x250?text=Session+Photo+1'">
+            <!-- Core Highlights -->
+            <div class="space-y-4">
+                <h3 class="text-xl font-bold text-white flex items-center gap-2">
+                    <i class="fa-solid fa-star text-yellow-400"></i> Core Highlights
+                </h3>
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
+                    <div class="glass-card p-5 rounded-xl border border-slate-800">
+                        <i class="fa-solid fa-flag text-blue-400 text-2xl mb-2"></i>
+                        <h4 class="font-bold text-white">Director of Operations</h4>
+                        <p class="text-xs text-slate-400 mt-1">Leading operational workflows and event executions at PTEC English Language Club.</p>
                     </div>
-                    <div class="media-body">
-                        <div class="media-title">Professional CV Writing Workshop</div>
-                        <div class="media-desc">Organized by PTEC Career Club to help students build professional job resumes.</div>
+                    <div class="glass-card p-5 rounded-xl border border-slate-800">
+                        <i class="fa-solid fa-palette text-blue-400 text-2xl mb-2"></i>
+                        <h4 class="font-bold text-white">Assistant Secretary (IT & Design)</h4>
+                        <p class="text-xs text-slate-400 mt-1">Managing IT design and graphics branding for PTEC Career Club activities.</p>
                     </div>
-                </div>
-
-                <div class="media-card">
-                    <div class="media-img-wrapper">
-                        <img src="event2.jpg" alt="Session Image 2" class="media-img" onerror="this.src='https://via.placeholder.com/400x250?text=Session+Photo+2'">
-                    </div>
-                    <div class="media-body">
-                        <div class="media-title">Intra Campus Competition</div>
-                        <div class="media-desc">Managed student registrations, automated email workflows, and event execution.</div>
-                    </div>
-                </div>
-
-                <div class="media-card">
-                    <div class="media-img-wrapper">
-                        <img src="event3.jpg" alt="Session Image 3" class="media-img" onerror="this.src='https://via.placeholder.com/400x250?text=Session+Photo+3'">
-                    </div>
-                    <div class="media-body">
-                        <div class="media-title">Textile Youth Carnival 2.6</div>
-                        <div class="media-desc">Attended national textile youth convention at Bangladesh Film Archive, Dhaka.</div>
+                    <div class="glass-card p-5 rounded-xl border border-slate-800">
+                        <i class="fa-solid fa-award text-blue-400 text-2xl mb-2"></i>
+                        <h4 class="font-bold text-white">Campus Ambassador</h4>
+                        <p class="text-xs text-slate-400 mt-1">Served as Official Campus Ambassador for Textile Olympiad 5.0 organized by JTEC.</p>
                     </div>
                 </div>
             </div>
-        </div>
+        </section>
 
-        <!-- ================= TAB 4: CERTIFICATES & GIFTS ================= -->
-        <div id="tab-certificates" class="page-view">
-            <div class="section-header"><i class="fas fa-medal"></i> Gift Certificates & Achievements</div>
-            <p style="color: var(--text-muted); margin-bottom: 25px;">Recognitions, participation gifts, and awards received.</p>
-
-            <div class="grid-2">
-                <div class="media-card">
-                    <div class="media-img-wrapper" style="height:250px;">
-                        <img src="cert1.jpg" alt="Certificate 1" class="media-img" onerror="this.src='https://via.placeholder.com/500x300?text=Certificate+or+Gift+Image+1'">
+        <!-- TAB 2: LEADERSHIP -->
+        <section id="sec-leadership" class="hidden space-y-6">
+            <h3 class="text-2xl font-bold text-white border-b border-slate-800 pb-2">Leadership & Experience</h3>
+            <div class="grid grid-cols-1 gap-4">
+                <div class="glass-card p-6 rounded-xl border-l-4 border-blue-500">
+                    <div class="flex justify-between items-start flex-wrap gap-2">
+                        <h4 class="text-xl font-bold text-white">Director of Operations</h4>
+                        <span class="text-xs bg-blue-900/50 text-blue-300 px-2.5 py-1 rounded-md font-semibold">PTEC English Language Club</span>
                     </div>
-                    <div class="media-body">
-                        <div class="media-title">English Excellence Challenge Certificate</div>
-                        <div class="media-desc">Recognized for participation and excellence in English language performance hosted by PTEC ELC.</div>
-                    </div>
+                    <p class="text-sm text-slate-300 mt-2">Directing event operations, organizing competitions like English Excellence Challenge 2026, and coordinating member workflows.</p>
                 </div>
 
-                <div class="media-card">
-                    <div class="media-img-wrapper" style="height:250px;">
-                        <img src="cert2.jpg" alt="Certificate 2" class="media-img" onerror="this.src='https://via.placeholder.com/500x300?text=Certificate+or+Gift+Image+2'">
+                <div class="glass-card p-6 rounded-xl border-l-4 border-cyan-500">
+                    <div class="flex justify-between items-start flex-wrap gap-2">
+                        <h4 class="text-xl font-bold text-white">Assistant Secretary (IT & Design)</h4>
+                        <span class="text-xs bg-cyan-900/50 text-cyan-300 px-2.5 py-1 rounded-md font-semibold">PTEC Career Club</span>
                     </div>
-                    <div class="media-body">
-                        <div class="media-title">Textile Olympiad 5.0 Ambassador Honor</div>
-                        <div class="media-desc">Awarded recognition for successful event promotion and campus ambassador duties.</div>
-                    </div>
-                </div>
-            </div>
-        </div>
-
-        <!-- ================= TAB 5: CONTACT & NETWORK ================= -->
-        <div id="tab-contact" class="page-view">
-            <div class="section-header"><i class="fas fa-address-book"></i> Connect & Network</div>
-            
-            <div class="grid-2">
-                <div class="content-card">
-                    <h3 style="color:#fff; margin-bottom: 15px;">Contact Information</h3>
-                    <p style="color: var(--text-muted); margin-bottom: 12px;"><i class="fas fa-envelope" style="color:var(--accent-blue); margin-right:8px;"></i> <strong>Email:</strong> prothomsoyeb@gmail.com</p>
-                    <p style="color: var(--text-muted); margin-bottom: 12px;"><i class="fas fa-location-dot" style="color:var(--accent-purple); margin-right:8px;"></i> <strong>Address:</strong> Eskendar Ali Bishwash Road By Lane, Narayonpur, Pabna, Bangladesh</p>
-                    <p style="color: var(--text-muted); margin-bottom: 20px;"><i class="fas fa-university" style="color:var(--accent-emerald); margin-right:8px;"></i> <strong>Institution:</strong> Pabna Textile Engineering College</p>
-                    
-                    <a href="mailto:prothomsoyeb@gmail.com" class="nav-btn active" style="display:inline-flex; text-decoration:none; padding: 10px 24px;"><i class="fas fa-paper-plane"></i> Send Direct Email</a>
+                    <p class="text-sm text-slate-300 mt-2">Managing digital media, IT support, registration workflow automation, and event visual branding.</p>
                 </div>
 
-                <div class="content-card">
-                    <h3 style="color:#fff; margin-bottom: 15px;">Social Media Handles</h3>
-                    <p style="color: var(--text-muted);">Feel free to connect with me for professional collaborations or campus projects.</p>
-                    
-                    <div class="social-row">
-                        <a href="https://www.linkedin.com/in/soyeb-prothom-6590b43b8" target="_blank" class="social-icon" title="LinkedIn"><i class="fab fa-linkedin-in"></i></a>
-                        <a href="https://www.facebook.com/soyeb.prothomsp" target="_blank" class="social-icon" title="Facebook"><i class="fab fa-facebook-f"></i></a>
-                        <a href="https://www.instagram.com/soyeb_prothom" target="_blank" class="social-icon" title="Instagram"><i class="fab fa-instagram"></i></a>
+                <div class="glass-card p-6 rounded-xl border-l-4 border-indigo-500">
+                    <div class="flex justify-between items-start flex-wrap gap-2">
+                        <h4 class="text-xl font-bold text-white">General Member</h4>
+                        <span class="text-xs bg-indigo-900/50 text-indigo-300 px-2.5 py-1 rounded-md font-semibold">Textile Engineers Society (TES)</span>
                     </div>
+                    <p class="text-sm text-slate-300 mt-2">Participating in national industry seminars, Textile Youth Carnival 2.6, and networking with textile professionals.</p>
                 </div>
             </div>
-        </div>
+        </section>
 
-    </div>
+        <!-- TAB 3: SESSIONS & GALLERY -->
+        <section id="sec-sessions" class="hidden space-y-6">
+            <h3 class="text-2xl font-bold text-white border-b border-slate-800 pb-2">Sessions & Event Gallery</h3>
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                <div class="glass-card p-5 rounded-xl">
+                    <div class="bg-slate-800 rounded-lg h-48 flex items-center justify-center text-slate-500 mb-4 border border-slate-700">
+                        <i class="fa-solid fa-file-signature text-4xl"></i>
+                    </div>
+                    <h4 class="font-bold text-white text-lg">PTEC Career Club CV Session</h4>
+                    <p class="text-xs text-slate-400 mt-1">Participated in professional CV writing and career orientation session at Pabna Textile Engineering College.</p>
+                </div>
+
+                <div class="glass-card p-5 rounded-xl">
+                    <div class="bg-slate-800 rounded-lg h-48 flex items-center justify-center text-slate-500 mb-4 border border-slate-700">
+                        <i class="fa-solid fa-users text-4xl"></i>
+                    </div>
+                    <h4 class="font-bold text-white text-lg">Textile Youth Carnival 2.6</h4>
+                    <p class="text-xs text-slate-400 mt-1">Attended youth assembly at Bangladesh Film Archive, Dhaka, connecting with industrial seniors and youth leaders.</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- TAB 4: CERTIFICATES -->
+        <section id="sec-certificates" class="hidden space-y-6">
+            <h3 class="text-2xl font-bold text-white border-b border-slate-800 pb-2">Certificates & Recognition</h3>
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
+                <div class="glass-card p-5 rounded-xl border border-slate-800 text-center">
+                    <i class="fa-solid fa-award text-yellow-400 text-3xl mb-3"></i>
+                    <h4 class="font-bold text-white">Campus Ambassador</h4>
+                    <p class="text-xs text-slate-400 mt-1">Textile Olympiad 5.0 (JTEC)</p>
+                </div>
+                <div class="glass-card p-5 rounded-xl border border-slate-800 text-center">
+                    <i class="fa-solid fa-certificate text-blue-400 text-3xl mb-3"></i>
+                    <h4 class="font-bold text-white">English Excellence Challenge</h4>
+                    <p class="text-xs text-slate-400 mt-1">PTEC English Language Club</p>
+                </div>
+                <div class="glass-card p-5 rounded-xl border border-slate-800 text-center">
+                    <i class="fa-solid fa-graduation-cap text-green-400 text-3xl mb-3"></i>
+                    <h4 class="font-bold text-white">CV Writing Session</h4>
+                    <p class="text-xs text-slate-400 mt-1">PTEC Career Club</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- TAB 5: CONTACT -->
+        <section id="sec-contact" class="hidden space-y-6">
+            <h3 class="text-2xl font-bold text-white border-b border-slate-800 pb-2">Get in Touch</h3>
+            <div class="glass-card p-6 rounded-xl max-w-xl mx-auto space-y-4">
+                <p class="text-slate-300 text-sm text-center">Feel free to connect for official campus collaborations, event executions, or professional networking.</p>
+                <div class="space-y-3 pt-2">
+                    <a href="https://linkedin.com" target="_blank" class="flex items-center gap-3 p-3 rounded-lg bg-slate-800/80 hover:bg-slate-700 text-blue-400 font-medium transition-all">
+                        <i class="fa-brands fa-linkedin text-xl"></i> LinkedIn Profile
+                    </a>
+                    <a href="https://facebook.com" target="_blank" class="flex items-center gap-3 p-3 rounded-lg bg-slate-800/80 hover:bg-slate-700 text-blue-400 font-medium transition-all">
+                        <i class="fa-brands fa-facebook text-xl"></i> Facebook Profile
+                    </a>
+                </div>
+            </div>
+        </section>
+
+    </main>
 
     <!-- Footer -->
-    <footer>
-        <div class="nav-container" style="justify-content: center;">
-            <p>&copy; 2026 Soyeb Prothom. All Rights Reserved | Built for Pabna Textile Engineering College</p>
+    <footer class="glass-card border-t border-slate-800 py-6 mt-12">
+        <div class="max-w-6xl mx-auto px-4 text-center text-xs text-slate-400">
+            <p>© 2026 Soyeb Prothom. All rights reserved.</p>
         </div>
     </footer>
 
-    <!-- Tab Switch Script -->
+    <!-- Tab Switching Script -->
     <script>
         function switchTab(tabName) {
-            // Hide all tab pages
-            const pages = document.querySelectorAll('.page-view');
-            pages.forEach(page => page.classList.remove('active-page'));
+            const tabs = ['home', 'leadership', 'sessions', 'certificates', 'contact'];
+            tabs.forEach(t => {
+                document.getElementById('sec-' + t).classList.add('hidden');
+                document.getElementById('tab-' + t).classList.remove('active');
+                document.getElementById('tab-' + t).classList.add('text-slate-300', 'hover:text-white', 'hover:bg-slate-800');
+            });
 
-            // Deactivate all buttons
-            const buttons = document.querySelectorAll('.nav-btn');
-            buttons.forEach(btn => btn.classList.remove('active'));
-
-            // Activate selected tab and button
-            document.getElementById('tab-' + tabName).classList.add('active-page');
-            event.currentTarget.classList.add('active');
+            document.getElementById('sec-' + tabName).classList.remove('hidden');
+            const activeBtn = document.getElementById('tab-' + tabName);
+            activeBtn.classList.add('active');
+            activeBtn.classList.remove('text-slate-300', 'hover:text-white', 'hover:bg-slate-800');
         }
     </script>
 </body>
