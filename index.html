@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" class="scroll-smooth">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -9,73 +9,175 @@
     <!-- FontAwesome Icons -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <!-- Google Fonts -->
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
-    <style>
-        body { font-family: 'Inter', sans-serif; }
-        .glass-card {
-            background: rgba(30, 41, 59, 0.7);
-            backdrop-filter: blur(12px);
-            border: 1px solid rgba(255, 255, 255, 0.1);
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        sans: ['"Plus Jakarta Sans"', 'sans-serif'],
+                    },
+                    animation: {
+                        'pulse-slow': 'pulse 6s cubic-bezier(0.4, 0, 0.6, 1) infinite',
+                        'float': 'float 3s ease-in-out infinite',
+                    },
+                    keyframes: {
+                        float: {
+                            '0%, 100%': { transform: 'translateY(0px)' },
+                            '50%': { transform: 'translateY(-8px)' },
+                        }
+                    }
+                }
+            }
         }
+    </script>
+
+    <style>
+        body { 
+            font-family: 'Plus Jakarta Sans', sans-serif;
+            background-color: #030712;
+            color: #f3f4f6;
+            overflow-x: hidden;
+        }
+
+        /* Glassmorphism Effect */
+        .glass-card {
+            background: rgba(17, 24, 39, 0.65);
+            backdrop-filter: blur(16px);
+            -webkit-backdrop-filter: blur(16px);
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        .glass-card:hover {
+            border-color: rgba(59, 130, 246, 0.4);
+            transform: translateY(-4px);
+            box-shadow: 0 20px 40px -15px rgba(37, 99, 235, 0.25);
+        }
+
+        .nav-btn {
+            position: relative;
+            transition: all 0.3s ease;
+        }
+
         .nav-btn.active {
-            background-color: #2563eb;
+            background: linear-gradient(135deg, #2563eb 0%, #1d4ed8 100%);
             color: #ffffff;
+            box-shadow: 0 0 20px rgba(37, 99, 235, 0.5);
+        }
+
+        /* Tab Motion Animation */
+        .tab-content {
+            animation: fadeInSlideUp 0.5s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+        }
+
+        @keyframes fadeInSlideUp {
+            from {
+                opacity: 0;
+                transform: translateY(20px) scale(0.98);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0) scale(1);
+            }
+        }
+
+        /* Background Ambient Glows */
+        .bg-glow-blue {
+            position: absolute;
+            width: 400px;
+            height: 400px;
+            background: radial-gradient(circle, rgba(37, 99, 235, 0.18) 0%, rgba(0,0,0,0) 70%);
+            filter: blur(60px);
+            pointer-events: none;
+            z-index: 0;
+        }
+
+        .bg-glow-purple {
+            position: absolute;
+            width: 450px;
+            height: 450px;
+            background: radial-gradient(circle, rgba(147, 51, 234, 0.15) 0%, rgba(0,0,0,0) 70%);
+            filter: blur(70px);
+            pointer-events: none;
+            z-index: 0;
         }
     </style>
 </head>
-<body class="bg-slate-950 text-slate-100 min-h-screen flex flex-col">
+<body class="min-h-screen flex flex-col relative">
+
+    <!-- Dynamic Background Lights -->
+    <div class="bg-glow-blue top-10 left-10 animate-pulse-slow"></div>
+    <div class="bg-glow-purple top-96 right-10 animate-pulse-slow" style="animation-delay: 2s;"></div>
 
     <!-- Header / Navigation -->
-    <header class="sticky top-0 z-50 glass-card border-b border-slate-800">
-        <div class="max-w-6xl mx-auto px-4 py-4 flex flex-col sm:flex-row justify-between items-center gap-4">
-            <h1 class="text-2xl font-bold tracking-tight text-blue-400">Soyeb Prothom</h1>
-            <nav class="flex flex-wrap justify-center gap-2 text-sm font-medium">
-                <button onclick="switchTab('home')" id="tab-home" class="nav-btn active px-4 py-2 rounded-lg transition-all flex items-center gap-2">
-                    <i class="fa-solid fa-house"></i> Home
+    <header class="sticky top-0 z-50 glass-card border-b border-slate-800/80 my-2 mx-auto max-w-6xl w-[95%] rounded-2xl px-2">
+        <div class="px-4 py-3 flex flex-col sm:flex-row justify-between items-center gap-4">
+            <a href="#" class="text-2xl font-extrabold tracking-tight text-transparent bg-clip-text bg-gradient-to-r from-blue-400 via-cyan-300 to-indigo-400 hover:scale-105 transition-transform duration-300 flex items-center gap-2">
+                <span class="w-3 h-3 rounded-full bg-blue-500 animate-ping"></span>
+                Soyeb Prothom
+            </a>
+            <nav class="flex flex-wrap justify-center gap-1.5 text-sm font-medium">
+                <button onclick="switchTab('home')" id="tab-home" class="nav-btn active px-3.5 py-2 rounded-xl text-xs sm:text-sm transition-all flex items-center gap-2">
+                    <i class="fa-solid fa-house text-xs"></i> Home
                 </button>
-                <button onclick="switchTab('education')" id="tab-education" class="nav-btn px-4 py-2 rounded-lg transition-all text-slate-300 hover:text-white hover:bg-slate-800 flex items-center gap-2">
-                    <i class="fa-solid fa-graduation-cap"></i> Education
+                <button onclick="switchTab('education')" id="tab-education" class="nav-btn px-3.5 py-2 rounded-xl text-xs sm:text-sm transition-all text-slate-300 hover:text-white hover:bg-slate-800/80 flex items-center gap-2">
+                    <i class="fa-solid fa-graduation-cap text-xs"></i> Education
                 </button>
-                <button onclick="switchTab('leadership')" id="tab-leadership" class="nav-btn px-4 py-2 rounded-lg transition-all text-slate-300 hover:text-white hover:bg-slate-800 flex items-center gap-2">
-                    <i class="fa-solid fa-user-tie"></i> Leadership
+                <button onclick="switchTab('leadership')" id="tab-leadership" class="nav-btn px-3.5 py-2 rounded-xl text-xs sm:text-sm transition-all text-slate-300 hover:text-white hover:bg-slate-800/80 flex items-center gap-2">
+                    <i class="fa-solid fa-user-tie text-xs"></i> Leadership
                 </button>
-                <button onclick="switchTab('sessions')" id="tab-sessions" class="nav-btn px-4 py-2 rounded-lg transition-all text-slate-300 hover:text-white hover:bg-slate-800 flex items-center gap-2">
-                    <i class="fa-solid fa-images"></i> Sessions & Gallery
+                <button onclick="switchTab('sessions')" id="tab-sessions" class="nav-btn px-3.5 py-2 rounded-xl text-xs sm:text-sm transition-all text-slate-300 hover:text-white hover:bg-slate-800/80 flex items-center gap-2">
+                    <i class="fa-solid fa-images text-xs"></i> Sessions & Gallery
                 </button>
-                <button onclick="switchTab('certificates')" id="tab-certificates" class="nav-btn px-4 py-2 rounded-lg transition-all text-slate-300 hover:text-white hover:bg-slate-800 flex items-center gap-2">
-                    <i class="fa-solid fa-certificate"></i> Certificates & Recognition
+                <button onclick="switchTab('certificates')" id="tab-certificates" class="nav-btn px-3.5 py-2 rounded-xl text-xs sm:text-sm transition-all text-slate-300 hover:text-white hover:bg-slate-800/80 flex items-center gap-2">
+                    <i class="fa-solid fa-certificate text-xs"></i> Certificates & Recognition
                 </button>
-                <button onclick="switchTab('contact')" id="tab-contact" class="nav-btn px-4 py-2 rounded-lg transition-all text-slate-300 hover:text-white hover:bg-slate-800 flex items-center gap-2">
-                    <i class="fa-solid fa-envelope"></i> Contact
+                <button onclick="switchTab('contact')" id="tab-contact" class="nav-btn px-3.5 py-2 rounded-xl text-xs sm:text-sm transition-all text-slate-300 hover:text-white hover:bg-slate-800/80 flex items-center gap-2">
+                    <i class="fa-solid fa-envelope text-xs"></i> Contact
                 </button>
             </nav>
         </div>
     </header>
 
     <!-- Main Content Container -->
-    <main class="max-w-6xl mx-auto px-4 py-8 flex-grow w-full">
+    <main class="max-w-6xl mx-auto px-4 py-8 flex-grow w-full z-10">
 
         <!-- TAB 1: HOME -->
-        <section id="sec-home" class="space-y-8">
+        <section id="sec-home" class="tab-content space-y-8">
             <!-- Hero Profile Card -->
-            <div class="glass-card rounded-2xl p-6 sm:p-8 flex flex-col md:flex-row items-center gap-8 shadow-xl">
-                <div class="relative w-44 h-44 sm:w-48 sm:h-48 rounded-full p-1 bg-gradient-to-tr from-blue-500 to-cyan-400 flex-shrink-0">
-                    <img src="profile.jpg" alt="Soyeb Prothom" class="w-full h-full object-cover rounded-full shadow-inner" onerror="this.onerror=null; this.src='https://via.placeholder.com/200?text=Profile+Image';">
+            <div class="glass-card rounded-3xl p-6 sm:p-10 flex flex-col md:flex-row items-center gap-8 relative overflow-hidden">
+                <div class="absolute -right-20 -top-20 w-64 h-64 bg-blue-600/10 rounded-full blur-3xl pointer-events-none"></div>
+                
+                <div class="relative w-44 h-44 sm:w-52 sm:h-52 rounded-full p-1.5 bg-gradient-to-tr from-blue-500 via-indigo-500 to-cyan-400 flex-shrink-0 animate-float shadow-2xl">
+                    <img src="profile.jpg" alt="Soyeb Prothom" class="w-full h-full object-cover rounded-full shadow-inner ring-4 ring-slate-900" onerror="this.onerror=null; this.src='https://via.placeholder.com/200?text=Profile+Image';">
                 </div>
+                
                 <div class="space-y-4 text-center md:text-left">
-                    <h2 class="text-3xl sm:text-4xl font-extrabold text-white">Soyeb Prothom</h2>
-                    <p class="text-blue-400 font-semibold text-lg">Undergraduate Textile Engineering Student | Campus Leader & Event Organizer</p>
-                    <p class="text-slate-300 leading-relaxed text-sm sm:text-base">
+                    <div>
+                        <span class="inline-block px-3 py-1 bg-blue-500/10 text-blue-400 border border-blue-500/20 rounded-full text-xs font-semibold uppercase tracking-widest mb-2">
+                            Welcome to My Portfolio
+                        </span>
+                        <h2 class="text-3xl sm:text-5xl font-black text-white tracking-tight">Soyeb Prothom</h2>
+                    </div>
+                    
+                    <p class="text-transparent bg-clip-text bg-gradient-to-r from-blue-400 via-cyan-300 to-indigo-300 font-bold text-base sm:text-xl">
+                        Undergraduate Textile Engineering Student | Campus Leader & Event Organizer
+                    </p>
+                    
+                    <p class="text-slate-300 leading-relaxed text-sm sm:text-base font-normal max-w-2xl">
                         B.Sc. in Fabric Engineering at Pabna Textile Engineering College. Passionate about textile engineering, leadership, and event management. Actively involved in campus organizations to develop strong industry leadership, team management, and organizational skills for future professional excellence in the textile sector.
                     </p>
-                    <div class="flex flex-wrap justify-center md:justify-start gap-3 text-xs sm:text-sm pt-2">
-                        <span class="bg-slate-800 text-slate-300 px-3 py-1.5 rounded-full flex items-center gap-2 border border-slate-700">
+                    
+                    <div class="flex flex-wrap justify-center md:justify-start gap-3 text-xs sm:text-sm pt-3">
+                        <span class="glass-card px-4 py-2 rounded-xl flex items-center gap-2 border border-slate-700/80 text-slate-200 hover:border-blue-500/50 transition-colors">
                             <i class="fa-solid fa-location-dot text-blue-400"></i> Pabna, Bangladesh
                         </span>
-                        <span class="bg-slate-800 text-slate-300 px-3 py-1.5 rounded-full flex items-center gap-2 border border-slate-700">
+                        <span class="glass-card px-4 py-2 rounded-xl flex items-center gap-2 border border-slate-700/80 text-slate-200 hover:border-blue-500/50 transition-colors">
                             <i class="fa-solid fa-graduation-cap text-blue-400"></i> PTEC 19th Batch
                         </span>
-                        <span class="bg-slate-800 text-slate-300 px-3 py-1.5 rounded-full flex items-center gap-2 border border-slate-700">
+                        <span class="glass-card px-4 py-2 rounded-xl flex items-center gap-2 border border-slate-700/80 text-slate-200 hover:border-blue-500/50 transition-colors">
                             <i class="fa-solid fa-building-columns text-blue-400"></i> Fabric Engineering
                         </span>
                     </div>
@@ -84,61 +186,72 @@
 
             <!-- Core Highlights -->
             <div class="space-y-4">
-                <h3 class="text-xl font-bold text-white flex items-center gap-2">
-                    <i class="fa-solid fa-star text-yellow-400"></i> Core Highlights
+                <h3 class="text-xl sm:text-2xl font-bold text-white flex items-center gap-3">
+                    <i class="fa-solid fa-bolt text-yellow-400 animate-bounce"></i> Core Highlights
                 </h3>
-                <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
-                    <div class="glass-card p-5 rounded-xl border border-slate-800">
-                        <i class="fa-solid fa-flag text-blue-400 text-2xl mb-2"></i>
-                        <h4 class="font-bold text-white">Director of Operations</h4>
-                        <p class="text-xs text-slate-400 mt-1">Leading operational workflows and event executions at PTEC English Language Club.</p>
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-5">
+                    <div class="glass-card p-6 rounded-2xl group cursor-pointer">
+                        <div class="w-12 h-12 rounded-xl bg-blue-500/10 border border-blue-500/20 flex items-center justify-center mb-4 group-hover:scale-110 group-hover:bg-blue-500 group-hover:text-white transition-all duration-300 text-blue-400">
+                            <i class="fa-solid fa-flag text-xl"></i>
+                        </div>
+                        <h4 class="font-bold text-white text-lg group-hover:text-blue-400 transition-colors">Director of Operations</h4>
+                        <p class="text-xs text-slate-400 mt-2 leading-relaxed">Leading operational workflows and event executions at PTEC English Language Club.</p>
                     </div>
-                    <div class="glass-card p-5 rounded-xl border border-slate-800">
-                        <i class="fa-solid fa-palette text-blue-400 text-2xl mb-2"></i>
-                        <h4 class="font-bold text-white">Assistant Secretary (IT & Design)</h4>
-                        <p class="text-xs text-slate-400 mt-1">Managing IT design and graphics branding for PTEC Career Club activities.</p>
+
+                    <div class="glass-card p-6 rounded-2xl group cursor-pointer">
+                        <div class="w-12 h-12 rounded-xl bg-cyan-500/10 border border-cyan-500/20 flex items-center justify-center mb-4 group-hover:scale-110 group-hover:bg-cyan-500 group-hover:text-white transition-all duration-300 text-cyan-400">
+                            <i class="fa-solid fa-palette text-xl"></i>
+                        </div>
+                        <h4 class="font-bold text-white text-lg group-hover:text-cyan-400 transition-colors">Assistant Secretary (IT & Design)</h4>
+                        <p class="text-xs text-slate-400 mt-2 leading-relaxed">Managing IT design and graphics branding for PTEC Career Club activities.</p>
                     </div>
-                    <div class="glass-card p-5 rounded-xl border border-slate-800">
-                        <i class="fa-solid fa-award text-blue-400 text-2xl mb-2"></i>
-                        <h4 class="font-bold text-white">Campus Ambassador</h4>
-                        <p class="text-xs text-slate-400 mt-1">Served as Official Campus Ambassador for Textile Olympiad 5.0 organized by JTEC.</p>
+
+                    <div class="glass-card p-6 rounded-2xl group cursor-pointer">
+                        <div class="w-12 h-12 rounded-xl bg-indigo-500/10 border border-indigo-500/20 flex items-center justify-center mb-4 group-hover:scale-110 group-hover:bg-indigo-500 group-hover:text-white transition-all duration-300 text-indigo-400">
+                            <i class="fa-solid fa-award text-xl"></i>
+                        </div>
+                        <h4 class="font-bold text-white text-lg group-hover:text-indigo-400 transition-colors">Campus Ambassador</h4>
+                        <p class="text-xs text-slate-400 mt-2 leading-relaxed">Served as Official Campus Ambassador for Textile Olympiad 5.0 organized by JTEC.</p>
                     </div>
                 </div>
             </div>
         </section>
 
         <!-- TAB 2: EDUCATION -->
-        <section id="sec-education" class="hidden space-y-6">
-            <h3 class="text-2xl font-bold text-white border-b border-slate-800 pb-2">Academic Background</h3>
+        <section id="sec-education" class="hidden tab-content space-y-6">
+            <h3 class="text-2xl sm:text-3xl font-extrabold text-white border-b border-slate-800/80 pb-3 flex items-center gap-3">
+                <i class="fa-solid fa-graduation-cap text-blue-400"></i> Academic Background
+            </h3>
             <div class="grid grid-cols-1 gap-6">
                 
                 <!-- B.Sc. in Fabric Engineering -->
-                <div class="glass-card p-6 rounded-xl border-l-4 border-blue-500">
-                    <h4 class="text-xl font-bold text-white">B.Sc. in Fabric Engineering — Pabna Textile Engineering College (PTEC)</h4>
-                    <ul class="mt-3 space-y-1.5 text-slate-300 text-sm list-disc list-inside">
-                        <li><span class="text-slate-400 font-medium">Current Status:</span> <span class="text-white font-semibold">Level 1, Term 2</span></li>
-                        <li><span class="text-slate-400 font-medium">Level 1, Term 1 CGPA:</span> <span class="text-emerald-400 font-semibold">3.00</span></li>
-                        <li><span class="text-slate-400 font-medium">Session:</span> <span class="text-white font-semibold">2024-2025</span></li>
+                <div class="glass-card p-7 rounded-2xl border-l-4 border-blue-500 relative overflow-hidden group">
+                    <div class="absolute top-0 right-0 w-32 h-32 bg-blue-500/5 rounded-full blur-2xl group-hover:bg-blue-500/10 transition-all"></div>
+                    <h4 class="text-xl sm:text-2xl font-bold text-white group-hover:text-blue-400 transition-colors">B.Sc. in Fabric Engineering — Pabna Textile Engineering College (PTEC)</h4>
+                    <ul class="mt-4 space-y-2 text-slate-300 text-sm sm:text-base">
+                        <li class="flex items-center gap-2"><i class="fa-solid fa-chevron-right text-blue-400 text-xs"></i> <span class="text-slate-400 font-medium">Current Status:</span> <span class="text-white font-semibold">Level 1, Term 2</span></li>
+                        <li class="flex items-center gap-2"><i class="fa-solid fa-chevron-right text-blue-400 text-xs"></i> <span class="text-slate-400 font-medium">Level 1, Term 1 CGPA:</span> <span class="text-emerald-400 font-bold bg-emerald-500/10 px-2 py-0.5 rounded border border-emerald-500/20">3.00</span></li>
+                        <li class="flex items-center gap-2"><i class="fa-solid fa-chevron-right text-blue-400 text-xs"></i> <span class="text-slate-400 font-medium">Session:</span> <span class="text-white font-semibold">2024-2025</span></li>
                     </ul>
                 </div>
 
                 <!-- HSC -->
-                <div class="glass-card p-6 rounded-xl border-l-4 border-cyan-500">
-                    <h4 class="text-xl font-bold text-white">Higher Secondary Certificate (HSC) — Govt. Shaheed Bulbul College, Pabna</h4>
-                    <ul class="mt-3 space-y-1.5 text-slate-300 text-sm list-disc list-inside">
-                        <li><span class="text-slate-400 font-medium">Passing Year:</span> <span class="text-white font-semibold">2024</span></li>
-                        <li><span class="text-slate-400 font-medium">Group:</span> <span class="text-white font-semibold">Science</span></li>
-                        <li><span class="text-slate-400 font-medium">Result (GPA):</span> <span class="text-emerald-400 font-semibold">5.00</span></li>
+                <div class="glass-card p-7 rounded-2xl border-l-4 border-cyan-500 relative overflow-hidden group">
+                    <h4 class="text-xl sm:text-2xl font-bold text-white group-hover:text-cyan-400 transition-colors">Higher Secondary Certificate (HSC) — Govt. Shaheed Bulbul College, Pabna</h4>
+                    <ul class="mt-4 space-y-2 text-slate-300 text-sm sm:text-base">
+                        <li class="flex items-center gap-2"><i class="fa-solid fa-chevron-right text-cyan-400 text-xs"></i> <span class="text-slate-400 font-medium">Passing Year:</span> <span class="text-white font-semibold">2024</span></li>
+                        <li class="flex items-center gap-2"><i class="fa-solid fa-chevron-right text-cyan-400 text-xs"></i> <span class="text-slate-400 font-medium">Group:</span> <span class="text-white font-semibold">Science</span></li>
+                        <li class="flex items-center gap-2"><i class="fa-solid fa-chevron-right text-cyan-400 text-xs"></i> <span class="text-slate-400 font-medium">Result (GPA):</span> <span class="text-emerald-400 font-bold bg-emerald-500/10 px-2 py-0.5 rounded border border-emerald-500/20">5.00</span></li>
                     </ul>
                 </div>
 
                 <!-- SSC -->
-                <div class="glass-card p-6 rounded-xl border-l-4 border-indigo-500">
-                    <h4 class="text-xl font-bold text-white">Secondary School Certificate (SSC) — Pabna Zilla School</h4>
-                    <ul class="mt-3 space-y-1.5 text-slate-300 text-sm list-disc list-inside">
-                        <li><span class="text-slate-400 font-medium">Passing Year:</span> <span class="text-white font-semibold">2022</span></li>
-                        <li><span class="text-slate-400 font-medium">Group:</span> <span class="text-white font-semibold">Science</span></li>
-                        <li><span class="text-slate-400 font-medium">Result (GPA):</span> <span class="text-emerald-400 font-semibold">5.00</span></li>
+                <div class="glass-card p-7 rounded-2xl border-l-4 border-indigo-500 relative overflow-hidden group">
+                    <h4 class="text-xl sm:text-2xl font-bold text-white group-hover:text-indigo-400 transition-colors">Secondary School Certificate (SSC) — Pabna Zilla School</h4>
+                    <ul class="mt-4 space-y-2 text-slate-300 text-sm sm:text-base">
+                        <li class="flex items-center gap-2"><i class="fa-solid fa-chevron-right text-indigo-400 text-xs"></i> <span class="text-slate-400 font-medium">Passing Year:</span> <span class="text-white font-semibold">2022</span></li>
+                        <li class="flex items-center gap-2"><i class="fa-solid fa-chevron-right text-indigo-400 text-xs"></i> <span class="text-slate-400 font-medium">Group:</span> <span class="text-white font-semibold">Science</span></li>
+                        <li class="flex items-center gap-2"><i class="fa-solid fa-chevron-right text-indigo-400 text-xs"></i> <span class="text-slate-400 font-medium">Result (GPA):</span> <span class="text-emerald-400 font-bold bg-emerald-500/10 px-2 py-0.5 rounded border border-emerald-500/20">5.00</span></li>
                     </ul>
                 </div>
 
@@ -146,121 +259,139 @@
         </section>
 
         <!-- TAB 3: LEADERSHIP -->
-        <section id="sec-leadership" class="hidden space-y-6">
-            <h3 class="text-2xl font-bold text-white border-b border-slate-800 pb-2">Leadership & Experience</h3>
-            <div class="grid grid-cols-1 gap-4">
+        <section id="sec-leadership" class="hidden tab-content space-y-6">
+            <h3 class="text-2xl sm:text-3xl font-extrabold text-white border-b border-slate-800/80 pb-3 flex items-center gap-3">
+                <i class="fa-solid fa-user-tie text-blue-400"></i> Leadership & Experience
+            </h3>
+            <div class="grid grid-cols-1 gap-5">
                 
                 <!-- 1. PTEC English Language Club -->
-                <div class="glass-card p-6 rounded-xl border-l-4 border-blue-500">
+                <div class="glass-card p-6 rounded-2xl border-l-4 border-blue-500 group">
                     <div class="flex justify-between items-start flex-wrap gap-2">
-                        <h4 class="text-xl font-bold text-white">Director of Operations</h4>
-                        <span class="text-xs bg-blue-900/50 text-blue-300 px-2.5 py-1 rounded-md font-semibold">PTEC English Language Club</span>
+                        <h4 class="text-xl font-bold text-white group-hover:text-blue-400 transition-colors">Director of Operations</h4>
+                        <span class="text-xs bg-blue-500/10 text-blue-300 border border-blue-500/20 px-3 py-1 rounded-full font-semibold">PTEC English Language Club</span>
                     </div>
-                    <p class="text-sm text-slate-300 mt-2">Directing event operations, organizing competitions like English Excellence Challenge 2026, and coordinating member workflows.</p>
+                    <p class="text-sm text-slate-300 mt-3 leading-relaxed">Directing event operations, organizing competitions like English Excellence Challenge 2026, and coordinating member workflows.</p>
                 </div>
 
                 <!-- 2. PTEC Career Club -->
-                <div class="glass-card p-6 rounded-xl border-l-4 border-cyan-500">
+                <div class="glass-card p-6 rounded-2xl border-l-4 border-cyan-500 group">
                     <div class="flex justify-between items-start flex-wrap gap-2">
-                        <h4 class="text-xl font-bold text-white">Assistant Secretary (IT & Design)</h4>
-                        <span class="text-xs bg-cyan-900/50 text-cyan-300 px-2.5 py-1 rounded-md font-semibold">PTEC Career Club</span>
+                        <h4 class="text-xl font-bold text-white group-hover:text-cyan-400 transition-colors">Assistant Secretary (IT & Design)</h4>
+                        <span class="text-xs bg-cyan-500/10 text-cyan-300 border border-cyan-500/20 px-3 py-1 rounded-full font-semibold">PTEC Career Club</span>
                     </div>
-                    <p class="text-sm text-slate-300 mt-2">Managing digital media, IT support, registration workflow automation, and event visual branding.</p>
+                    <p class="text-sm text-slate-300 mt-3 leading-relaxed">Managing digital media, IT support, registration workflow automation, and event visual branding.</p>
                 </div>
 
                 <!-- 3. Textile Engineers Society (TES) -->
-                <div class="glass-card p-6 rounded-xl border-l-4 border-indigo-500">
+                <div class="glass-card p-6 rounded-2xl border-l-4 border-indigo-500 group">
                     <div class="flex justify-between items-start flex-wrap gap-2">
-                        <h4 class="text-xl font-bold text-white">General Member</h4>
-                        <span class="text-xs bg-indigo-900/50 text-indigo-300 px-2.5 py-1 rounded-md font-semibold">Textile Engineers Society (TES)</span>
+                        <h4 class="text-xl font-bold text-white group-hover:text-indigo-400 transition-colors">General Member</h4>
+                        <span class="text-xs bg-indigo-500/10 text-indigo-300 border border-indigo-500/20 px-3 py-1 rounded-full font-semibold">Textile Engineers Society (TES)</span>
                     </div>
-                    <p class="text-sm text-slate-300 mt-2">Participating in national industry seminars, Textile Youth Carnival 2.6, and networking with textile professionals. Attended multiple industry seminars and completed professional course on Fundamentals of Garments Merchandising.</p>
+                    <p class="text-sm text-slate-300 mt-3 leading-relaxed">Participating in national industry seminars, Textile Youth Carnival 2.6, and networking with textile professionals. Attended multiple industry seminars and completed professional course on Fundamentals of Garments Merchandising.</p>
                 </div>
 
                 <!-- 4. Textile Engineers Club (TEC) -->
-                <div class="glass-card p-6 rounded-xl border-l-4 border-emerald-500">
+                <div class="glass-card p-6 rounded-2xl border-l-4 border-emerald-500 group">
                     <div class="flex justify-between items-center flex-wrap gap-2">
-                        <h4 class="text-xl font-bold text-white">General Member</h4>
-                        <span class="text-xs bg-emerald-900/50 text-emerald-300 px-2.5 py-1 rounded-md font-semibold">Textile Engineers Club (TEC)</span>
+                        <h4 class="text-xl font-bold text-white group-hover:text-emerald-400 transition-colors">General Member</h4>
+                        <span class="text-xs bg-emerald-500/10 text-emerald-300 border border-emerald-500/20 px-3 py-1 rounded-full font-semibold">Textile Engineers Club (TEC)</span>
                     </div>
                 </div>
 
                 <!-- 5. Pabna District Students Association -->
-                <div class="glass-card p-6 rounded-xl border-l-4 border-purple-500">
+                <div class="glass-card p-6 rounded-2xl border-l-4 border-purple-500 group">
                     <div class="flex justify-between items-start flex-wrap gap-2">
-                        <h4 class="text-xl font-bold text-white">General Member</h4>
-                        <span class="text-xs bg-purple-900/50 text-purple-300 px-2.5 py-1 rounded-md font-semibold">Pabna District Students Association</span>
+                        <h4 class="text-xl font-bold text-white group-hover:text-purple-400 transition-colors">General Member</h4>
+                        <span class="text-xs bg-purple-500/10 text-purple-300 border border-purple-500/20 px-3 py-1 rounded-full font-semibold">Pabna District Students Association</span>
                     </div>
-                    <p class="text-sm text-slate-300 mt-2">Actively participating in student welfare programs, regional community building, and campus leadership initiatives.</p>
+                    <p class="text-sm text-slate-300 mt-3 leading-relaxed">Actively participating in student welfare programs, regional community building, and campus leadership initiatives.</p>
                 </div>
 
             </div>
         </section>
 
         <!-- TAB 4: SESSIONS & GALLERY -->
-        <section id="sec-sessions" class="hidden space-y-6">
-            <h3 class="text-2xl font-bold text-white border-b border-slate-800 pb-2">Sessions & Event Gallery</h3>
+        <section id="sec-sessions" class="hidden tab-content space-y-6">
+            <h3 class="text-2xl sm:text-3xl font-extrabold text-white border-b border-slate-800/80 pb-3 flex items-center gap-3">
+                <i class="fa-solid fa-images text-blue-400"></i> Sessions & Event Gallery
+            </h3>
             <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
-                <div class="glass-card p-5 rounded-xl">
-                    <div class="bg-slate-800 rounded-lg h-48 flex items-center justify-center text-slate-500 mb-4 border border-slate-700">
-                        <i class="fa-solid fa-file-signature text-4xl"></i>
+                <div class="glass-card p-6 rounded-2xl group cursor-pointer overflow-hidden">
+                    <div class="bg-slate-800/80 rounded-xl h-52 flex items-center justify-center text-slate-500 mb-4 border border-slate-700/80 group-hover:border-blue-500/50 transition-all">
+                        <i class="fa-solid fa-file-signature text-5xl group-hover:scale-125 group-hover:text-blue-400 transition-all duration-300"></i>
                     </div>
-                    <h4 class="font-bold text-white text-lg">PTEC Career Club CV Session</h4>
-                    <p class="text-xs text-slate-400 mt-1">Participated in professional CV writing and career orientation session at Pabna Textile Engineering College.</p>
+                    <h4 class="font-bold text-white text-lg group-hover:text-blue-400 transition-colors">PTEC Career Club CV Session</h4>
+                    <p class="text-xs text-slate-400 mt-2 leading-relaxed">Participated in professional CV writing and career orientation session at Pabna Textile Engineering College.</p>
                 </div>
 
-                <div class="glass-card p-5 rounded-xl">
-                    <div class="bg-slate-800 rounded-lg h-48 flex items-center justify-center text-slate-500 mb-4 border border-slate-700">
-                        <i class="fa-solid fa-users text-4xl"></i>
+                <div class="glass-card p-6 rounded-2xl group cursor-pointer overflow-hidden">
+                    <div class="bg-slate-800/80 rounded-xl h-52 flex items-center justify-center text-slate-500 mb-4 border border-slate-700/80 group-hover:border-cyan-500/50 transition-all">
+                        <i class="fa-solid fa-users text-5xl group-hover:scale-125 group-hover:text-cyan-400 transition-all duration-300"></i>
                     </div>
-                    <h4 class="font-bold text-white text-lg">Textile Youth Carnival 2.6</h4>
-                    <p class="text-xs text-slate-400 mt-1">Attended youth assembly at Bangladesh Film Archive, Dhaka, connecting with industrial seniors and youth leaders.</p>
+                    <h4 class="font-bold text-white text-lg group-hover:text-cyan-400 transition-colors">Textile Youth Carnival 2.6</h4>
+                    <p class="text-xs text-slate-400 mt-2 leading-relaxed">Attended youth assembly at Bangladesh Film Archive, Dhaka, connecting with industrial seniors and youth leaders.</p>
                 </div>
             </div>
         </section>
 
         <!-- TAB 5: CERTIFICATES & RECOGNITION -->
-        <section id="sec-certificates" class="hidden space-y-6">
-            <h3 class="text-2xl font-bold text-white border-b border-slate-800 pb-2">Certificates & Recognition</h3>
+        <section id="sec-certificates" class="hidden tab-content space-y-6">
+            <h3 class="text-2xl sm:text-3xl font-extrabold text-white border-b border-slate-800/80 pb-3 flex items-center gap-3">
+                <i class="fa-solid fa-certificate text-blue-400"></i> Certificates & Recognition
+            </h3>
             <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
                 
                 <!-- Recognition 1: Best Contributor TES -->
-                <div class="glass-card p-5 rounded-xl border border-slate-800 space-y-3">
-                    <span class="text-xs bg-red-900/50 text-red-300 px-2.5 py-1 rounded-md font-semibold inline-block">Textile Engineers Society</span>
-                    <h4 class="font-bold text-white text-lg">Best Contributor (August 2026)</h4>
+                <div class="glass-card p-6 rounded-2xl border border-slate-800 space-y-4 group">
+                    <div class="flex justify-between items-center">
+                        <span class="text-xs bg-red-500/10 text-red-300 border border-red-500/20 px-3 py-1 rounded-full font-semibold">Textile Engineers Society</span>
+                        <i class="fa-solid fa-award text-red-400 text-xl"></i>
+                    </div>
+                    <h4 class="font-bold text-white text-xl group-hover:text-red-400 transition-colors">Best Contributor (August 2026)</h4>
                     <p class="text-xs text-slate-400">Awarded for outstanding contribution in Job Posting Team at TES.</p>
-                    <div class="overflow-hidden rounded-lg border border-slate-700 pt-2">
-                        <img src="p2.jpeg" alt="Best Contributor Poster" class="w-full h-auto object-contain rounded-lg shadow-md">
+                    <div class="overflow-hidden rounded-xl border border-slate-700/80 pt-2 bg-slate-900/50">
+                        <img src="p2.jpeg" alt="Best Contributor Poster" class="w-full h-auto object-contain rounded-lg shadow-2xl group-hover:scale-105 transition-transform duration-500">
                     </div>
                 </div>
 
                 <!-- Recognition 2: 3rd Place Crossword Challenge -->
-                <div class="glass-card p-5 rounded-xl border border-slate-800 space-y-3">
-                    <span class="text-xs bg-amber-900/50 text-amber-300 px-2.5 py-1 rounded-md font-semibold inline-block">PTEC English Language Club</span>
-                    <h4 class="font-bold text-white text-lg">3rd Place - Crossword Challenge</h4>
+                <div class="glass-card p-6 rounded-2xl border border-slate-800 space-y-4 group">
+                    <div class="flex justify-between items-center">
+                        <span class="text-xs bg-amber-500/10 text-amber-300 border border-amber-500/20 px-3 py-1 rounded-full font-semibold">PTEC English Language Club</span>
+                        <i class="fa-solid fa-trophy text-amber-400 text-xl"></i>
+                    </div>
+                    <h4 class="font-bold text-white text-xl group-hover:text-amber-400 transition-colors">3rd Place - Crossword Challenge</h4>
                     <p class="text-xs text-slate-400">Achieved 3rd Place in English Excellence Challenge 2026.</p>
-                    <div class="overflow-hidden rounded-lg border border-slate-700 pt-2">
-                        <img src="p1.jpeg" alt="English Excellence Challenge Poster" class="w-full h-auto object-contain rounded-lg shadow-md">
+                    <div class="overflow-hidden rounded-xl border border-slate-700/80 pt-2 bg-slate-900/50">
+                        <img src="p1.jpeg" alt="English Excellence Challenge Poster" class="w-full h-auto object-contain rounded-lg shadow-2xl group-hover:scale-105 transition-transform duration-500">
                     </div>
                 </div>
 
                 <!-- Certificate 1: Garments Merchandising -->
-                <div class="glass-card p-5 rounded-xl border border-slate-800 space-y-3">
-                    <span class="text-xs bg-indigo-900/50 text-indigo-300 px-2.5 py-1 rounded-md font-semibold inline-block">Textile Engineers Society</span>
-                    <h4 class="font-bold text-white text-lg">Fundamentals of Garments Merchandising</h4>
+                <div class="glass-card p-6 rounded-2xl border border-slate-800 space-y-4 group">
+                    <div class="flex justify-between items-center">
+                        <span class="text-xs bg-indigo-500/10 text-indigo-300 border border-indigo-500/20 px-3 py-1 rounded-full font-semibold">Textile Engineers Society</span>
+                        <i class="fa-solid fa-scroll text-indigo-400 text-xl"></i>
+                    </div>
+                    <h4 class="font-bold text-white text-xl group-hover:text-indigo-400 transition-colors">Fundamentals of Garments Merchandising</h4>
                     <p class="text-xs text-slate-400">Course completion certificate organized by Textile Engineers Society (TES).</p>
-                    <div class="overflow-hidden rounded-lg border border-slate-700 pt-2">
-                        <img src="Certificate 1.jpeg" alt="Fundamentals of Garments Merchandising Certificate" class="w-full h-auto object-contain rounded-lg shadow-md" onerror="this.onerror=null; this.src='cert1.jpg';">
+                    <div class="overflow-hidden rounded-xl border border-slate-700/80 pt-2 bg-slate-900/50">
+                        <img src="Certificate 1.jpeg" alt="Fundamentals of Garments Merchandising Certificate" class="w-full h-auto object-contain rounded-lg shadow-2xl group-hover:scale-105 transition-transform duration-500" onerror="this.onerror=null; this.src='cert1.jpg';">
                     </div>
                 </div>
 
                 <!-- Certificate 2: Impactful Communication -->
-                <div class="glass-card p-5 rounded-xl border border-slate-800 space-y-3">
-                    <span class="text-xs bg-cyan-900/50 text-cyan-300 px-2.5 py-1 rounded-md font-semibold inline-block">PTEC Career Club</span>
-                    <h4 class="font-bold text-white text-lg">Mastering Impactful Communication</h4>
+                <div class="glass-card p-6 rounded-2xl border border-slate-800 space-y-4 group">
+                    <div class="flex justify-between items-center">
+                        <span class="text-xs bg-cyan-500/10 text-cyan-300 border border-cyan-500/20 px-3 py-1 rounded-full font-semibold">PTEC Career Club</span>
+                        <i class="fa-solid fa-comments text-cyan-400 text-xl"></i>
+                    </div>
+                    <h4 class="font-bold text-white text-xl group-hover:text-cyan-400 transition-colors">Mastering Impactful Communication</h4>
                     <p class="text-xs text-slate-400">One-day training certificate covering public speaking, business writing, and confidence building.</p>
-                    <div class="overflow-hidden rounded-lg border border-slate-700 pt-2">
-                        <img src="Certificate 2.jpeg" alt="Mastering Impactful Communication Certificate" class="w-full h-auto object-contain rounded-lg shadow-md" onerror="this.onerror=null; this.src='cert2.jpg';">
+                    <div class="overflow-hidden rounded-xl border border-slate-700/80 pt-2 bg-slate-900/50">
+                        <img src="Certificate 2.jpeg" alt="Mastering Impactful Communication Certificate" class="w-full h-auto object-contain rounded-lg shadow-2xl group-hover:scale-105 transition-transform duration-500" onerror="this.onerror=null; this.src='cert2.jpg';">
                     </div>
                 </div>
 
@@ -268,34 +399,54 @@
         </section>
 
         <!-- TAB 6: CONTACT -->
-        <section id="sec-contact" class="hidden space-y-6">
-            <h3 class="text-2xl font-bold text-white border-b border-slate-800 pb-2">Get in Touch</h3>
-            <div class="glass-card p-6 rounded-xl max-w-xl mx-auto space-y-4">
-                <p class="text-slate-300 text-sm text-center">Feel free to connect for official campus collaborations, event executions, or professional networking.</p>
+        <section id="sec-contact" class="hidden tab-content space-y-6">
+            <h3 class="text-2xl sm:text-3xl font-extrabold text-white border-b border-slate-800/80 pb-3 flex items-center gap-3">
+                <i class="fa-solid fa-paper-plane text-blue-400"></i> Get in Touch
+            </h3>
+            <div class="glass-card p-8 rounded-3xl max-w-xl mx-auto space-y-6 relative overflow-hidden">
+                <p class="text-slate-300 text-sm sm:text-base text-center leading-relaxed">
+                    Feel free to connect for official campus collaborations, event executions, or professional networking.
+                </p>
+
                 <div class="space-y-3 pt-2">
                     <!-- Email -->
-                    <a href="mailto:prothomsoyeb@gmail.com" class="flex items-center gap-3 p-3 rounded-lg bg-slate-800/80 hover:bg-slate-700 text-emerald-400 font-medium transition-all">
-                        <i class="fa-solid fa-envelope text-xl"></i> prothomsoyeb@gmail.com
+                    <a href="mailto:prothomsoyeb@gmail.com" class="flex items-center gap-4 p-4 rounded-xl bg-slate-800/60 hover:bg-emerald-500/20 text-emerald-400 font-semibold border border-slate-700/80 hover:border-emerald-500/50 transition-all hover:translate-x-2">
+                        <div class="w-10 h-10 rounded-lg bg-emerald-500/10 flex items-center justify-center">
+                            <i class="fa-solid fa-envelope text-lg"></i>
+                        </div>
+                        prothomsoyeb@gmail.com
                     </a>
 
                     <!-- Phone Number -->
-                    <a href="tel:+8801936299067" class="flex items-center gap-3 p-3 rounded-lg bg-slate-800/80 hover:bg-slate-700 text-emerald-400 font-medium transition-all">
-                        <i class="fa-solid fa-phone text-xl"></i> +880 1936-299067
+                    <a href="tel:+8801936299067" class="flex items-center gap-4 p-4 rounded-xl bg-slate-800/60 hover:bg-emerald-500/20 text-emerald-400 font-semibold border border-slate-700/80 hover:border-emerald-500/50 transition-all hover:translate-x-2">
+                        <div class="w-10 h-10 rounded-lg bg-emerald-500/10 flex items-center justify-center">
+                            <i class="fa-solid fa-phone text-lg"></i>
+                        </div>
+                        +880 1936-299067
                     </a>
 
                     <!-- Instagram -->
-                    <a href="https://www.instagram.com/soyeb_prothom?stkn=MTVlcHUwMGE0d2o5eQ==" target="_blank" class="flex items-center gap-3 p-3 rounded-lg bg-slate-800/80 hover:bg-slate-700 text-pink-400 font-medium transition-all">
-                        <i class="fa-brands fa-instagram text-xl"></i> Instagram Profile
+                    <a href="https://www.instagram.com/soyeb_prothom?stkn=MTVlcHUwMGE0d2o5eQ==" target="_blank" class="flex items-center gap-4 p-4 rounded-xl bg-slate-800/60 hover:bg-pink-500/20 text-pink-400 font-semibold border border-slate-700/80 hover:border-pink-500/50 transition-all hover:translate-x-2">
+                        <div class="w-10 h-10 rounded-lg bg-pink-500/10 flex items-center justify-center">
+                            <i class="fa-brands fa-instagram text-lg"></i>
+                        </div>
+                        Instagram Profile
                     </a>
 
                     <!-- LinkedIn -->
-                    <a href="https://linkedin.com" target="_blank" class="flex items-center gap-3 p-3 rounded-lg bg-slate-800/80 hover:bg-slate-700 text-blue-400 font-medium transition-all">
-                        <i class="fa-brands fa-linkedin text-xl"></i> LinkedIn Profile
+                    <a href="https://linkedin.com" target="_blank" class="flex items-center gap-4 p-4 rounded-xl bg-slate-800/60 hover:bg-blue-500/20 text-blue-400 font-semibold border border-slate-700/80 hover:border-blue-500/50 transition-all hover:translate-x-2">
+                        <div class="w-10 h-10 rounded-lg bg-blue-500/10 flex items-center justify-center">
+                            <i class="fa-brands fa-linkedin text-lg"></i>
+                        </div>
+                        LinkedIn Profile
                     </a>
 
                     <!-- Facebook -->
-                    <a href="https://facebook.com" target="_blank" class="flex items-center gap-3 p-3 rounded-lg bg-slate-800/80 hover:bg-slate-700 text-blue-500 font-medium transition-all">
-                        <i class="fa-brands fa-facebook text-xl"></i> Facebook Profile
+                    <a href="https://facebook.com" target="_blank" class="flex items-center gap-4 p-4 rounded-xl bg-slate-800/60 hover:bg-blue-600/20 text-blue-500 font-semibold border border-slate-700/80 hover:border-blue-600/50 transition-all hover:translate-x-2">
+                        <div class="w-10 h-10 rounded-lg bg-blue-600/10 flex items-center justify-center">
+                            <i class="fa-brands fa-facebook text-lg"></i>
+                        </div>
+                        Facebook Profile
                     </a>
                 </div>
             </div>
@@ -304,7 +455,7 @@
     </main>
 
     <!-- Footer -->
-    <footer class="glass-card border-t border-slate-800 py-6 mt-12">
+    <footer class="glass-card border-t border-slate-800/80 py-6 mt-12 z-10">
         <div class="max-w-6xl mx-auto px-4 text-center text-xs text-slate-400">
             <p>© 2026 Soyeb Prothom. All rights reserved.</p>
         </div>
@@ -315,15 +466,25 @@
         function switchTab(tabName) {
             const tabs = ['home', 'education', 'leadership', 'sessions', 'certificates', 'contact'];
             tabs.forEach(t => {
-                document.getElementById('sec-' + t).classList.add('hidden');
-                document.getElementById('tab-' + t).classList.remove('active');
-                document.getElementById('tab-' + t).classList.add('text-slate-300', 'hover:text-white', 'hover:bg-slate-800');
+                const section = document.getElementById('sec-' + t);
+                const button = document.getElementById('tab-' + t);
+                
+                section.classList.add('hidden');
+                button.classList.remove('active');
+                button.classList.add('text-slate-300', 'hover:text-white', 'hover:bg-slate-800/80');
             });
 
-            document.getElementById('sec-' + tabName).classList.remove('hidden');
+            const activeSection = document.getElementById('sec-' + tabName);
             const activeBtn = document.getElementById('tab-' + tabName);
+            
+            activeSection.classList.remove('hidden');
+            // Trigger animation again on tab switch
+            activeSection.style.animation = 'none';
+            activeSection.offsetHeight; /* trigger reflow */
+            activeSection.style.animation = null;
+
             activeBtn.classList.add('active');
-            activeBtn.classList.remove('text-slate-300', 'hover:text-white', 'hover:bg-slate-800');
+            activeBtn.classList.remove('text-slate-300', 'hover:text-white', 'hover:bg-slate-800/80');
         }
     </script>
 </body>
