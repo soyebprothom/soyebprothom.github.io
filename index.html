@@ -33,6 +33,9 @@
                 <button onclick="switchTab('home')" id="tab-home" class="nav-btn active px-4 py-2 rounded-lg transition-all flex items-center gap-2">
                     <i class="fa-solid fa-house"></i> Home
                 </button>
+                <button onclick="switchTab('education')" id="tab-education" class="nav-btn px-4 py-2 rounded-lg transition-all text-slate-300 hover:text-white hover:bg-slate-800 flex items-center gap-2">
+                    <i class="fa-solid fa-graduation-cap"></i> Education
+                </button>
                 <button onclick="switchTab('leadership')" id="tab-leadership" class="nav-btn px-4 py-2 rounded-lg transition-all text-slate-300 hover:text-white hover:bg-slate-800 flex items-center gap-2">
                     <i class="fa-solid fa-user-tie"></i> Leadership
                 </button>
@@ -104,7 +107,45 @@
             </div>
         </section>
 
-        <!-- TAB 2: LEADERSHIP -->
+        <!-- TAB 2: EDUCATION -->
+        <section id="sec-education" class="hidden space-y-6">
+            <h3 class="text-2xl font-bold text-white border-b border-slate-800 pb-2">Academic Background</h3>
+            <div class="grid grid-cols-1 gap-6">
+                
+                <!-- B.Sc. in Fabric Engineering -->
+                <div class="glass-card p-6 rounded-xl border-l-4 border-blue-500">
+                    <h4 class="text-xl font-bold text-white">B.Sc. in Fabric Engineering — Pabna Textile Engineering College (PTEC)</h4>
+                    <ul class="mt-3 space-y-1.5 text-slate-300 text-sm list-disc list-inside">
+                        <li><span class="text-slate-400 font-medium">Current Status:</span> <span class="text-white font-semibold">Level 1, Term 2</span></li>
+                        <li><span class="text-slate-400 font-medium">Level 1, Term 1 CGPA:</span> <span class="text-emerald-400 font-semibold">3.00</span></li>
+                        <li><span class="text-slate-400 font-medium">Session:</span> <span class="text-white font-semibold">2024-2025</span></li>
+                    </ul>
+                </div>
+
+                <!-- HSC -->
+                <div class="glass-card p-6 rounded-xl border-l-4 border-cyan-500">
+                    <h4 class="text-xl font-bold text-white">Higher Secondary Certificate (HSC) — Govt. Shaheed Bulbul College, Pabna</h4>
+                    <ul class="mt-3 space-y-1.5 text-slate-300 text-sm list-disc list-inside">
+                        <li><span class="text-slate-400 font-medium">Passing Year:</span> <span class="text-white font-semibold">2022</span></li>
+                        <li><span class="text-slate-400 font-medium">Group:</span> <span class="text-white font-semibold">Science</span></li>
+                        <li><span class="text-slate-400 font-medium">Result (GPA):</span> <span class="text-emerald-400 font-semibold">5.00</span></li>
+                    </ul>
+                </div>
+
+                <!-- SSC -->
+                <div class="glass-card p-6 rounded-xl border-l-4 border-indigo-500">
+                    <h4 class="text-xl font-bold text-white">Secondary School Certificate (SSC) — Pabna Zilla School</h4>
+                    <ul class="mt-3 space-y-1.5 text-slate-300 text-sm list-disc list-inside">
+                        <li><span class="text-slate-400 font-medium">Passing Year:</span> <span class="text-white font-semibold">2020</span></li>
+                        <li><span class="text-slate-400 font-medium">Group:</span> <span class="text-white font-semibold">Science</span></li>
+                        <li><span class="text-slate-400 font-medium">Result (GPA):</span> <span class="text-emerald-400 font-semibold">5.00</span></li>
+                    </ul>
+                </div>
+
+            </div>
+        </section>
+
+        <!-- TAB 3: LEADERSHIP -->
         <section id="sec-leadership" class="hidden space-y-6">
             <h3 class="text-2xl font-bold text-white border-b border-slate-800 pb-2">Leadership & Experience</h3>
             <div class="grid grid-cols-1 gap-4">
@@ -156,7 +197,7 @@
             </div>
         </section>
 
-        <!-- TAB 3: SESSIONS & GALLERY -->
+        <!-- TAB 4: SESSIONS & GALLERY -->
         <section id="sec-sessions" class="hidden space-y-6">
             <h3 class="text-2xl font-bold text-white border-b border-slate-800 pb-2">Sessions & Event Gallery</h3>
             <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
@@ -178,7 +219,7 @@
             </div>
         </section>
 
-        <!-- TAB 4: CERTIFICATES -->
+        <!-- TAB 5: CERTIFICATES -->
         <section id="sec-certificates" class="hidden space-y-6">
             <h3 class="text-2xl font-bold text-white border-b border-slate-800 pb-2">Certificates & Recognition</h3>
             <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
@@ -200,7 +241,7 @@
             </div>
         </section>
 
-        <!-- TAB 5: CONTACT -->
+        <!-- TAB 6: CONTACT -->
         <section id="sec-contact" class="hidden space-y-6">
             <h3 class="text-2xl font-bold text-white border-b border-slate-800 pb-2">Get in Touch</h3>
             <div class="glass-card p-6 rounded-xl max-w-xl mx-auto space-y-4">
@@ -228,7 +269,7 @@
     <!-- Tab Switching Script -->
     <script>
         function switchTab(tabName) {
-            const tabs = ['home', 'leadership', 'sessions', 'certificates', 'contact'];
+            const tabs = ['home', 'education', 'leadership', 'sessions', 'certificates', 'contact'];
             tabs.forEach(t => {
                 document.getElementById('sec-' + t).classList.add('hidden');
                 document.getElementById('tab-' + t).classList.remove('active');
